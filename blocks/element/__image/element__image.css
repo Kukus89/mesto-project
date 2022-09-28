@@ -1,0 +1,10 @@
+.element__image {
+  background-image: url(../../../images/elements/kirill-pershin-1088404-unsplash.jpg);
+  background-position: center;
+  background-size: cover;
+  max-width: 100%;
+  
+  grid-column: 1/2;
+  grid-row: 1/2;
+  border-radius: 10px 10px 0 0;
+}

@@ -1,0 +1,6 @@
+.profile__subtitle {
+  grid-row: 2/3;
+  grid-column: 1/2;
+  margin: 0;
+  padding-top: 16px;
+}
