@@ -14,3 +14,10 @@
 @import url(../blocks/element/__image/element__image.css);
 @import url(../blocks/element/__title/element__title.css);
 @import url(../blocks/element/__like/element__like.css);
+@import url(../blocks/footer/footer.css);
+@import url(../blocks/footer/__copyright/footer__copyright.css);
+@import url(../blocks/edite-form/edite-form.css);
+@import url(../blocks/edite-form/__title/edite-form__title.css);
+@import url(../blocks/edite-form/__input-container/edite-form__input-container.css);
+@import url(../blocks/edite-form/__form-item/edite-form__form-item.css);
+@import url(../blocks/edite-form/__line/edite-form__line.css);

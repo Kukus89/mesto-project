@@ -1,0 +1,12 @@
+.edite-form__form-item {
+  padding-top: 30px;
+  border: 0;
+  font-weight: 400;
+  font-size: 14px;
+  line-height: 17px;
+  color: #000000;
+}
+
+.edite-form__form-item:first-child {
+  padding-top: 0;
+}

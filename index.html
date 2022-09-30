@@ -9,8 +9,12 @@
   <title>Document</title>
   <style>
     body {
-      background-color: rgba(117, 114, 114, 0.712);
+      background-color: #000000;
     }
+
+    /* * {
+      outline: 1px solid red;
+    } */
   </style>
 </head>
 
@@ -60,10 +64,23 @@
           <h2 class="element__title">Карачаевск</h2>
           <img class="element__like" src="./images/like.svg" alt="">
         </div>
-
       </section>
+      <footer class="footer">
+        <p class="footer__copyright">© 2020 Mesto Russia</p>
+      </footer>
 
 
+      <form class="edite-form">
+        <h2 class="edite-form__title">Редактировать профиль</h2>
+        <fieldset class="edite-form__input-container">
+          <input class="edite-form__form-item" placeholder="Кусто" type="text" >
+          <div class="edite-form__line"></div>
+          <input class="edite-form__form-item" placeholder="Кусто" type="text" >
+          <div class="edite-form__line"></div>
+          <button>Сохранить</button>
+        </fieldset>
+
+      </form>
 
 
 
