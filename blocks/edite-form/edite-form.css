@@ -1,9 +1,9 @@
 .edite-form {
+  position: fixed;
   width: 430px;
+  left: calc(50% - 215px);
+  top: calc(50% - 165px);
   background-color: #FFFFFF;
   border-radius: 10px;
-  position: fixed;
-  margin: auto;
-  top: 195px;
-  left: calc(50% - 215px);
+  z-index: 5;
 }

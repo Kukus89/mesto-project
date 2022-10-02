@@ -4,3 +4,8 @@
   justify-self: flex-end;
   align-self: center
 }
+
+.profile__add-button:hover {
+  cursor: pointer;
+  opacity: 0.6;
+}

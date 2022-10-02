@@ -68,28 +68,19 @@
       <footer class="footer">
         <p class="footer__copyright">© 2020 Mesto Russia</p>
       </footer>
-
-
-      <form class="edite-form">
-        <h2 class="edite-form__title">Редактировать профиль</h2>
-        <fieldset class="edite-form__input-container">
-          <input class="edite-form__form-item" placeholder="Кусто" type="text" >
-          <div class="edite-form__line"></div>
-          <input class="edite-form__form-item" placeholder="Кусто" type="text" >
-          <div class="edite-form__line"></div>
-          <button>Сохранить</button>
-        </fieldset>
-
-      </form>
-
-
-
-
-
-
-
-
-
+      <div class="popup popup_opened">
+        <form class="edite-form">
+          <h2 class="edite-form__title">Редактировать профиль</h2>
+          <fieldset class="edite-form__input-container">
+            <input class="edite-form__form-item" placeholder="Кусто" type="text">
+            <div class="edite-form__line"></div>
+            <input class="edite-form__form-item" placeholder="Кусто" type="text">
+            <div class="edite-form__line"></div>
+            <input class="edite-form__submite-button" type="submit" value="Сохранить"></input>
+          </fieldset>
+          <button class="edite-form__close-button" type="button" title="Закрыть"></button>
+        </form>
+      </div>
 
     </main>
   </div>

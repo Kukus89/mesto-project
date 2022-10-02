@@ -1,4 +1,5 @@
 .edite-form__input-container {
-  padding: 54px 0 0 36px;
+  margin: 0;
+  padding: 54px 36px 0;
   border: 0;
 }

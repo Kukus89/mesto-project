@@ -16,8 +16,12 @@
 @import url(../blocks/element/__like/element__like.css);
 @import url(../blocks/footer/footer.css);
 @import url(../blocks/footer/__copyright/footer__copyright.css);
+@import url(../blocks/popup/popup.css);
 @import url(../blocks/edite-form/edite-form.css);
 @import url(../blocks/edite-form/__title/edite-form__title.css);
 @import url(../blocks/edite-form/__input-container/edite-form__input-container.css);
 @import url(../blocks/edite-form/__form-item/edite-form__form-item.css);
 @import url(../blocks/edite-form/__line/edite-form__line.css);
+@import url(../blocks/edite-form/__submite-button/edite-form__submite-button.css);
+@import url(../blocks/edite-form/__close-button/edite-form__close-button.css);
+@import url(../blocks/popup/_opened/popup_opened.css);
