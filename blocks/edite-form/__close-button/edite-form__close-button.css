@@ -5,7 +5,6 @@
   border: none;
   width: 32px;
   height: 32px;
-  /* background-color: black; */
   background-image: url(../../../images/Close\ Icon.png);
   background-size: contain;
   background-color: black;
@@ -15,4 +14,11 @@
 .edite-form__close-button:hover {
   cursor: pointer;
   opacity: 0.6;
+}
+
+@media screen and (max-width: 520px) {
+  .edite-form__close-button {
+    left: calc(50% + 109px);
+    bottom: calc(50% + 160px + 19px);
+  }
 }

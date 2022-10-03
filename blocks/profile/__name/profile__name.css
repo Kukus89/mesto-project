@@ -4,3 +4,10 @@
   grid-column: 1/2;
   align-self: flex-end;
 }
+
+@media screen and (max-width: 431px) {
+  .profile__name {
+    grid-column: 2/3;
+    text-align: center;
+  }
+}

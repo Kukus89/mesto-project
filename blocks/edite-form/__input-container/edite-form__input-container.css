@@ -3,3 +3,10 @@
   padding: 54px 36px 0;
   border: 0;
 }
+
+@media screen and (max-width: 520px) {
+  .edite-form__input-container {
+    max-width: 282px;
+    padding: 75px 22px 0;
+  }
+}

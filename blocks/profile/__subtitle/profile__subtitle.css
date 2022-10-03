@@ -4,3 +4,10 @@
   margin: 0;
   padding-top: 16px;
 }
+
+@media screen and (max-width: 431px) {
+  .profile__subtitle {
+    grid-column: 2/3;
+    text-align: center;
+  }
+}
