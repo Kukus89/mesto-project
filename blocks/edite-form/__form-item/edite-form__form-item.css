@@ -5,6 +5,10 @@
   font-size: 14px;
   line-height: 17px;
   color: black;
+  text-overflow: ellipsis;
+  white-space: nowrap;
+  overflow: hidden;
+
 }
 
 .edite-form__form-item:first-child {
