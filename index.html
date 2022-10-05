@@ -1,76 +1,77 @@
 <!DOCTYPE html>
-<html lang="en">
+<html lang="ru">
 
 <head>
   <meta charset="UTF-8">
   <meta http-equiv="X-UA-Compatible" content="IE=edge">
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
-  <link rel="stylesheet" href="./styles/index.css" type="text/css">
-  <title>Document</title>
+  <link rel="stylesheet" href="./pages/index.css" type="text/css">
+  <title>Проект-Место</title>
 </head>
 
 <body class="body">
   <div class="page">
     <main>
       <section class="header">
-        <img src="./images/Logo.png" alt="" class="header__logo">
+        <img src="./images/Logo.png" alt="Логотип" class="header__logo">
       </section>
       <section class="profile">
-        <img class="profile__avatar" src="./images/profile_avatar.jpg" alt="">
+        <img class="profile__avatar" src="./images/profile_avatar.jpg" alt="Аватар">
         <div class="profile__info">
           <h1 class="profile__name">Жак-Ив Кусто</h1>
           <p class="profile__subtitle">Исследователь океана</p>
-          <img class="profile__edite-button" src="./images/Edit Button.png" alt="">
+          <button title="Редактировать" type="button" class="profile__edite-button"></button>
         </div>
-        <div class="profile__add-button"></div>
+        <button type="button" title="Добавить" class="profile__add-button"></button>
       </section>
-      <section class="elements">
-        <div class="element">
-          <div class="element__image"></div>
+      <ul class="elements">
+        <li class="element">
+          <img src="./images/elements/Karachaevsk.jpg" class="element__image" alt="Карачаевск"></img>
           <h2 class="element__title">Карачаевск</h2>
-          <div class="element__like element__like_active"></div>
-        </div>
-        <div class="element">
-          <div class="element__image"></div>
+          <button type="button" title="Понравилось" class="element__like element__like_active"></button>
+        </li>
+        <li class="element">
+          <img src="./images/elements/elbrus.jpg" class="element__image" alt="Гора Эльбрус"></img>
           <h2 class="element__title">Гора Эльбрус</h2>
-          <div class="element__like element__like_active"></div>
-        </div>
-        <div class="element">
-          <div class="element__image"></div>
+          <button type="button" title="Понравилось" class="element__like element__like_active"></button>
+        </li>
+        <li class="element">
+          <img src="./images/elements/dombay.jpg" class="element__image" alt="Домбай"></img>
           <h2 class="element__title">Домбай</h2>
-          <div class="element__like element__like_active"></div>
-        </div>
-        <div class="element">
-          <div class="element__image"></div>
+          <button type="button" title="Понравилось" class="element__like element__like_active"></button>
+        </li>
+        <li class="element">
+          <img src="./images/elements/Altay.jpg" class="element__image" alt="Алтай"></img>
           <h2 class="element__title">Алтай</h2>
-          <div class="element__like element__like_active"></div>
-        </div>
-        <div class="element">
-          <div class="element__image"></div>
+          <button type="button" title="Понравилось" class="element__like element__like_active"></button>
+        </li>
+        <li class="element">
+          <img src="./images/elements/Komchatka.jpg" class="element__image" alt="Комчатка"></img>
           <h2 class="element__title">Комчатка</h2>
-          <div class="element__like element__like_active"></div>
-        </div>
-        <div class="element">
-          <div class="element__image"></div>
+          <button type="button" title="Понравилось" class="element__like element__like_active"></button>
+        </li>
+        <li class="element">
+          <img src="./images/elements/Karachaevo.jpg" class="element__image" alt="Карачаево-Черкессия"></img>
           <h2 class="element__title">Карачаево-Черкессия</h2>
-          <div class="element__like element__like_active"></div>
-        </div>
-      </section>
+          <button type="button" title="Понравилось" class="element__like element__like_active"></button>
+        </li>
+      </ul>
       <footer class="footer">
         <p class="footer__copyright">© 2020 Mesto Russia</p>
       </footer>
-      <div class="popup popup_opened">
-        <form class="edite-form">
-          <h2 class="edite-form__title">Редактировать профиль</h2>
-          <fieldset class="edite-form__input-container">
-            <input class="edite-form__form-item" placeholder="Жак-Ив Кусто" type="text">
-            <div class="edite-form__line"></div>
-            <input class="edite-form__form-item" placeholder="Исследователь океана" type="text">
-            <div class="edite-form__line"></div>
-            <input class="edite-form__submite-button" type="submit" value="Сохранить"></input>
-          </fieldset>
-          <button class="edite-form__close-button" type="button" title="Закрыть"></button>
-        </form>
+      <div class="popup">
+        <div class="popup__edite-form">
+          <h2 class="popup__title">Редактировать профиль</h2>
+          <form name="edite-form">
+            <fieldset class="popup__input-container">
+              <input class="popup__form-item" name="profile_name" placeholder="Жак-Ив Кусто" type="text"></input>
+              <input class="popup__form-item" name="profile_subtitle" placeholder="Исследователь океана"
+                type="text"></input>
+              <input class="popup__submite-button" name="submit" type="submit" value="Сохранить"></input>
+            </fieldset>
+          </form>
+          <button class="popup__close-button" type="button" title="Закрыть"></button>
+        </div>
       </div>
 
     </main>

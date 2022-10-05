@@ -1,5 +1,5 @@
-@import url(../styles/normalize.css);
-@import url(../styles/fonts.css);
+@import url(../vendor/normalize.css);
+@import url(../vendor/fonts/inter/inter.css);
 @import url(../blocks/body/body.css);
 @import url(../blocks/page/page.css);
 @import url(../blocks/header/header.css);
@@ -20,11 +20,11 @@
 @import url(../blocks/footer/footer.css);
 @import url(../blocks/footer/__copyright/footer__copyright.css);
 @import url(../blocks/popup/popup.css);
-@import url(../blocks/edite-form/edite-form.css);
-@import url(../blocks/edite-form/__title/edite-form__title.css);
-@import url(../blocks/edite-form/__input-container/edite-form__input-container.css);
-@import url(../blocks/edite-form/__form-item/edite-form__form-item.css);
-@import url(../blocks/edite-form/__line/edite-form__line.css);
-@import url(../blocks/edite-form/__submite-button/edite-form__submite-button.css);
-@import url(../blocks/edite-form/__close-button/edite-form__close-button.css);
+@import url(../blocks/popup/__edite-form/popup__edite-form.css);
+@import url(../blocks/popup/__title/popup__title.css);
+@import url(../blocks/popup/__input-container/popup__input-container.css);
+@import url(../blocks/popup/__form-item/popup__form-item.css);
+@import url(../blocks/popup/__line/popup__line.css);
+@import url(../blocks/popup/__submite-button/popup__submite-button.css);
+@import url(../blocks/popup/__close-button/popup__close-button.css);
 @import url(../blocks/popup/_opened/popup_opened.css);

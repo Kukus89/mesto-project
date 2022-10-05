@@ -1,4 +1,4 @@
-.edite-form__submite-button {
+.popup__submite-button {
   padding: 0;
   border: none;
   margin: 48px 0 37px;
@@ -13,13 +13,16 @@
   border-radius: 2px;
 }
 
-.edite-form__submite-button:hover {
+.popup__submite-button:hover {
   cursor: pointer;
   opacity: 0.8;
 }
 
 @media screen and (max-width: 520px) {
-  .edite-form__submite-button {
+  .popup__submite-button {
+    height: 46px;
+    line-height: 17px;
+    font-size: 14px;
     max-width: 236px;
     margin: 45px 0 25px;
   }

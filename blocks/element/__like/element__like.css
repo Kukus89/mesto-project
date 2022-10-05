@@ -8,7 +8,9 @@
   grid-row: 2/3;
   align-self: center;
   justify-self: end;
-  padding-right: 20px;
+  margin-right: 20px;
+  border: 0;
+  background-color: white;
 }
 
 .element__like:hover {

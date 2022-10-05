@@ -1,4 +1,4 @@
-.edite-form__title {
+.popup__title {
   margin: 0;
   padding: 34px 0 0 36px;
   font-weight: 900;
@@ -8,9 +8,8 @@
 }
 
 @media screen and (max-width: 520px) {
-  .edite-form__title {
+  .popup__title {
     padding: 25px 22px 0;
-    font-weight: 900;
     font-size: 18px;
     line-height: 22px;
   }

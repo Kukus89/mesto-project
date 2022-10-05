@@ -1,33 +1,12 @@
 .element {
-  box-sizing: border-box;
+  /* box-sizing: border-box; */
   flex: 1 0 282px;
   background-color: #FFFFFF;
   display: grid;
   grid-template-columns: 100%;
   grid-template-rows: 282px 79px;
   border-radius: 10px;
-}
-
-.element:nth-child(1) .element__image {
-  background-image: url(../../images/elements/Karachaevsk.jpg);
-}
-
-.element:nth-child(2) .element__image {
-  background-image: url(../../images/elements/elbrus.jpg);
-}
-
-.element:nth-child(3) .element__image {
-  background-image: url(../../images/elements/dombay.jpg);
-}
-
-.element:nth-child(4) .element__image {
-  background-image: url(../../images/elements/Altay.jpg);
-}
-
-.element:nth-child(5) .element__image {
-  background-image: url(../../images/elements/Komchatka.jpg);
-}
-
-.element:nth-child(6) .element__image {
-  background-image: url(../../images/elements/Karachaevo.jpg);
+  overflow: hidden;
+  margin: 0;
+  padding: 0;
 }

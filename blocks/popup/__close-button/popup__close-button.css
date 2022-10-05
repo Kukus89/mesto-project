@@ -1,24 +1,26 @@
-.edite-form__close-button {
+ .popup__close-button {
   position: fixed;
   left: calc(50% + 215px + 8px);
   bottom: calc(50% + 160px + 8px);
   border: none;
   width: 32px;
   height: 32px;
-  background-image: url(../../../images/Close\ Icon.png);
+  background-image: url(../../../images/Close_Icon.svg);
   background-size: contain;
   background-color: black;
   z-index: 5;
 }
 
-.edite-form__close-button:hover {
+.popup__close-button:hover {
   cursor: pointer;
   opacity: 0.6;
 }
 
 @media screen and (max-width: 520px) {
-  .edite-form__close-button {
-    left: calc(50% + 109px);
-    bottom: calc(50% + 160px + 19px);
+  .popup__close-button {
+    width: 20px;
+    height: 20px;
+    left: calc(50% + 141px - 20px);
+    bottom: calc(50% + 160px + 16px);
   }
 }
