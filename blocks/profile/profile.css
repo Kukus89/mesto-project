@@ -10,6 +10,12 @@
   }
 }
 
+@media screen and (max-width: 695px) {
+  .profile {
+    justify-content: center;
+  }
+}
+
 @media screen and (max-width: 431px) {
   .profile {
     padding-top: 42px;

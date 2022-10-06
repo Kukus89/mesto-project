@@ -4,7 +4,6 @@
   -moz-osx-font-smoothing: grayscale;
   position: relative;
   max-width: 880px;
-  min-width: 320px;
   color: #FFFFFF;
   margin: 0 auto;
 }

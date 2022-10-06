@@ -1,5 +1,16 @@
 .popup__edite-form {
+  max-width: 430px;
+  position: fixed;
+  top: calc(50% - 165px);
+  left: calc(50% - 215px);
+  border-radius: 10px;
   background-color: #FFFFFF;
-  border-radius: 10px; 
-  z-index: 5; 
+  border-radius: 10px;
+}
+
+@media screen and (max-width: 520px) {
+  .popup__edite-form {
+    max-width: 282px;
+    left: calc(50% - 141px);
+  }
 }

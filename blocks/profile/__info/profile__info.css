@@ -1,5 +1,5 @@
 .profile__info {
-    align-self: center;
+  align-self: center;
   flex-grow: 1;
   padding-left: 30px;
   display: grid;
@@ -7,12 +7,17 @@
   grid-template-rows: min-content min-content;
 }
 
-@media screen and (max-width: 431px) {
-  .profile__info{
-    min-width: 320px;
-    width: 282px;
+@media screen and (max-width: 695px) {
+  .profile__info {
     margin-top: 22px;
+  }
+}
+
+@media screen and (max-width: 431px) {
+  .profile__info {
+    margin-top: 25px;
     grid-template-columns: 1fr max-content 1fr;
     padding: 0;
   }
 }
+
