@@ -12,13 +12,22 @@
   overflow: hidden;
 }
 
+@media screen and (max-width: 542px) {
+  .profile__subtitle {
+    text-align: center;
+    max-width: 100%;
+    grid-column: 1/4;
+  }
+}
+
 @media screen and (max-width: 431px) {
   .profile__subtitle {
+    max-width: 282px;
     padding-top: 9px;
     font-weight: 400;
     font-size: 14px;
     line-height: 17px;
-    grid-column: 2/3;
+    grid-column: 1/4;
     text-align: center;
   }
 }

@@ -13,7 +13,7 @@
   }
 }
 
-@media screen and (max-width: 431px) {
+@media screen and (max-width: 542px) {
   .profile__info {
     margin-top: 25px;
     grid-template-columns: 1fr max-content 1fr;
