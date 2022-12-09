@@ -9,7 +9,7 @@ let saveProfile = document.querySelector('.popup__submite-button');
 let saveCard = document.querySelector('.popup__saveCard-button');
 let profile_name = document.querySelector('.profile__name');
 let profile_subtitle = document.querySelector('.profile__subtitle');
-let like = document.querySelectorAll('.element__like');
+
 
 // Реализация функциональности проекта «Mesto» на JavaScript
 // 1. Работа модальных окон
@@ -80,9 +80,12 @@ function addCardDefault(placeName, srcPic) {
   element.querySelector('.element__like').addEventListener('click', function (evt) {
     evt.target.classList.toggle('element__like_active');
   })
+  element.querySelector('.element__delete-button').addEventListener('click', function removeCard(e) {
+    let dist = e.target.parentNode;
+    dist.remove()
+  });
   elementsList.append(element);
 }
-
 for (let i = 0; i < initialCards.length; i++) {
   addCardDefault(initialCards[i].name, initialCards[i].link)
 }
@@ -110,11 +113,19 @@ function addCard(evt) {
   element.querySelector('.element__like').addEventListener('click', function (evt) {
     evt.target.classList.toggle('element__like_active');
   })
+  element.querySelector('.element__delete-button').addEventListener('click', function removeCard(e) {
+    let dist = e.target.parentNode;
+    dist.remove()
+  });
   elementsList.prepend(element);
   closePopupButtonClick();
 }
 saveCard.addEventListener('click', addCard);
 
 // 5. Лайк карточки
+
+// Код добавлен в пункты 2 и 4.
+
+// 6. Удаление карточки
 
 // Код добавлен в пункты 2 и 4.
