@@ -5,7 +5,8 @@ let popup = document.querySelectorAll('.popup');
 let closeButton = document.querySelectorAll('.popup__close-button');
 let popup_profile_name = document.querySelector('.popup__profile_name');    // Поле ввода имени попапа 
 let popup_profile_subtitle = document.querySelector('.popup__profile_subtitle'); // Поле ввода профессии попапа
-let saveProfile = document.querySelector('.popup__submite-button')
+let saveProfile = document.querySelector('.popup__submite-button');
+let saveCard = document.querySelector('.popup__saveCard-button');
 let profile_name = document.querySelector('.profile__name');
 let profile_subtitle = document.querySelector('.profile__subtitle');
 let like = document.querySelectorAll('.element__like');
@@ -20,11 +21,14 @@ function editeProfileButtonClick() {
 }
 edite_button.addEventListener('click', editeProfileButtonClick);
 
-function closePopupButtonClick() {
-  popup_profile_name.value = '';
-  popup_profile_subtitle.value = '';
-  for (i = 0; i < popup.length; i++)
+function closePopupButtonClick() {  // Закрытие всех попапов "крестиком"
+  let formItem = document.querySelectorAll('.popup__form-item')
+  for (i = 0; i < popup.length; i++) {
     popup[i].classList.remove('popup_opened');
+  }
+  for (i = 0; i < formItem.length; i++) {
+    formItem[i].value = '';
+  }
 }
 for (i = 0; i < popup.length; i++) {
   closeButton[i].addEventListener('click', closePopupButtonClick);
@@ -40,7 +44,7 @@ saveProfile.addEventListener('submit', formSubmitHandler);
 
 // 2. Шесть карточек «из коробки»
 
-const initialCards = [
+let initialCards = [
   {
     name: 'Архыз',
     link: 'https://pictures.s3.yandex.net/frontend-developer/cards-compressed/arkhyz.jpg'
@@ -67,17 +71,20 @@ const initialCards = [
   }
 ];
 
-function addCard(placeName, srcPic) {
-  const cardTemplate = document.querySelector('.templateElements').content;
-  const elementsList = document.querySelector('.elements__list');
-  const element = cardTemplate.querySelector('.element').cloneNode(true);
+function addCardDefault(placeName, srcPic) {
+  let cardTemplate = document.querySelector('.templateElements').content;
+  let elementsList = document.querySelector('.elements__list');
+  let element = cardTemplate.querySelector('.element').cloneNode(true);
   element.querySelector('.element__image').src = srcPic;
   element.querySelector('.element__title').textContent = placeName;
+  element.querySelector('.element__like').addEventListener('click', function (evt) {
+    evt.target.classList.toggle('element__like_active');
+  })
   elementsList.append(element);
 }
 
 for (let i = 0; i < initialCards.length; i++) {
-  addCard(initialCards[i].name, initialCards[i].link)
+  addCardDefault(initialCards[i].name, initialCards[i].link)
 }
 
 // 3. Форма добавления карточки
@@ -90,3 +97,24 @@ function addCardButtonClick() {
   popup[1].classList.add('popup_opened');
 }
 addCardButton.addEventListener('click', addCardButtonClick);
+
+// 4. Добавление карточки
+
+function addCard(evt) {
+  evt.preventDefault();
+  const elementsList = document.querySelector('.elements__list');
+  const cardTemplate = document.querySelector('.templateElements').content;
+  const element = cardTemplate.querySelector('.element').cloneNode(true);
+  element.querySelector('.element__image').src = document.querySelector('.popup__src-image').value;
+  element.querySelector('.element__title').textContent = document.querySelector('.popup__area-name').value;
+  element.querySelector('.element__like').addEventListener('click', function (evt) {
+    evt.target.classList.toggle('element__like_active');
+  })
+  elementsList.prepend(element);
+  closePopupButtonClick();
+}
+saveCard.addEventListener('click', addCard);
+
+// 5. Лайк карточки
+
+// Код добавлен в пункты 2 и 4.

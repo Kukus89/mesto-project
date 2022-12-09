@@ -10,7 +10,7 @@
   justify-self: end;
   margin-right: 20px;
   border: 0;
-  background-color: white;
+  background-color: rgba(0, 0, 0, 0);;
 }
 
 .element__like:hover {

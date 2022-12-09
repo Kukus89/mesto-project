@@ -40,39 +40,30 @@
           <fieldset class="popup__input-container">
             <input class="popup__profile_name popup__form-item" name="profile_name" placeholder="Имя"
               type="text"></input>
-            <input class="popup__profile_subtitle popup__form-item" name="profile_subtitle"
-              placeholder="Профессия" type="text"></input>
+            <input class="popup__profile_subtitle popup__form-item" name="profile_subtitle" placeholder="Профессия"
+              type="text"></input>
             <input class="popup__submite-button" name="submit" type="submit" value="Сохранить"></input>
           </fieldset>
         </form>
         <button class="popup__close-button" type="button" title="Закрыть"></button>
       </div>
     </div>
-
     <div class="popup">
       <div class="popup__edite-form">
         <h2 class="popup__title">Новое место</h2>
         <form class="input-form" name="input-form">
           <fieldset class="popup__input-container">
-            <input class="popup__profile_name popup__form-item" name="profile_name" placeholder="Название"
+            <input class="popup__area-name popup__form-item" name="profile_name" placeholder="Название"
               type="text"></input>
-            <input class="popup__profile_subtitle popup__form-item" name="profile_subtitle"
+            <input class="popup__src-image popup__form-item" name="profile_subtitle"
               placeholder="Ссылка на картинку" type="text"></input>
-            <input class="popup__submite-button" name="submit" type="submit" value="Сохранить"></input>
+            <input class="popup__submite-button popup__saveCard-button" name="saveCard" type="submit"
+              value="Сохранить"></input>
           </fieldset>
         </form>
         <button class="popup__close-button" type="button" title="Создать"></button>
       </div>
     </div>
-
-
-
-
-
-
-
-
-
 
   </div>
 
@@ -81,6 +72,7 @@
       <img src="" class="element__image" alt="">
       <h2 class="element__title"></h2>
       <button type="button" title="Понравилось" class="element__like"></button>
+      <button type="button" title="Удалить" class="element__delete-button">  </button>
     </li>
   </template>
 
