@@ -10,7 +10,6 @@ let saveCard = document.querySelector('.popup__saveCard-button');
 let profile_name = document.querySelector('.profile__name');
 let profile_subtitle = document.querySelector('.profile__subtitle');
 
-
 // Реализация функциональности проекта «Mesto» на JavaScript
 // 1. Работа модальных окон
 
@@ -80,10 +79,10 @@ function addCardDefault(placeName, srcPic) {
   element.querySelector('.element__like').addEventListener('click', function (evt) {
     evt.target.classList.toggle('element__like_active');
   })
-  element.querySelector('.element__delete-button').addEventListener('click', function removeCard(e) {
-    let dist = e.target.parentNode;
-    dist.remove()
-  });
+  // element.querySelector('.element__delete-button').addEventListener('click', function removeCard(e) {
+  //   let dist = e.target.parentNode;
+  //   dist.remove()
+  // });
   elementsList.append(element);
 }
 for (let i = 0; i < initialCards.length; i++) {
@@ -113,10 +112,10 @@ function addCard(evt) {
   element.querySelector('.element__like').addEventListener('click', function (evt) {
     evt.target.classList.toggle('element__like_active');
   })
-  element.querySelector('.element__delete-button').addEventListener('click', function removeCard(e) {
-    let dist = e.target.parentNode;
-    dist.remove()
-  });
+  // element.querySelector('.element__delete-button').addEventListener('click', function removeCard(e) {
+  //   let dist = e.target.parentNode;
+  //   dist.remove()
+  // });
   elementsList.prepend(element);
   closePopupButtonClick();
 }
@@ -129,3 +128,18 @@ saveCard.addEventListener('click', addCard);
 // 6. Удаление карточки
 
 // Код добавлен в пункты 2 и 4.
+
+
+let elementis = document.querySelectorAll('.element')
+
+elementis.forEach((item) => {
+  item.querySelector('.element__delete-button').addEventListener('click', function removeCard(e) {
+    let dist = e.target.parentNode;
+    dist.remove()
+  })
+})
+
+
+
+
+
