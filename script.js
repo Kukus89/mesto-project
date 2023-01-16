@@ -76,14 +76,9 @@ function addCardDefault(placeName, srcPic) {
   let element = cardTemplate.querySelector('.element').cloneNode(true);
   element.querySelector('.element__image').src = srcPic;
   element.querySelector('.element__title').textContent = placeName;
-  element.querySelector('.element__like').addEventListener('click', function (evt) {
-    evt.target.classList.toggle('element__like_active');
-  })
-  // element.querySelector('.element__delete-button').addEventListener('click', function removeCard(e) {
-  //   let dist = e.target.parentNode;
-  //   dist.remove()
-  // });
+  element.querySelector('.element__like').addEventListener('click', cardLike)
   elementsList.append(element);
+  element.querySelector('.element__delete-button').addEventListener('click', removeCard);
 }
 for (let i = 0; i < initialCards.length; i++) {
   addCardDefault(initialCards[i].name, initialCards[i].link)
@@ -109,13 +104,8 @@ function addCard(evt) {
   const element = cardTemplate.querySelector('.element').cloneNode(true);
   element.querySelector('.element__image').src = document.querySelector('.popup__src-image').value;
   element.querySelector('.element__title').textContent = document.querySelector('.popup__area-name').value;
-  element.querySelector('.element__like').addEventListener('click', function (evt) {
-    evt.target.classList.toggle('element__like_active');
-  })
-  // element.querySelector('.element__delete-button').addEventListener('click', function removeCard(e) {
-  //   let dist = e.target.parentNode;
-  //   dist.remove()
-  // });
+  element.querySelector('.element__like').addEventListener('click', cardLike)
+  element.querySelector('.element__delete-button').addEventListener('click', removeCard);
   elementsList.prepend(element);
   closePopupButtonClick();
 }
@@ -123,22 +113,16 @@ saveCard.addEventListener('click', addCard);
 
 // 5. Лайк карточки
 
-// Код добавлен в пункты 2 и 4.
+function cardLike(e) {
+  e.target.classList.toggle('element__like_active')
+}
 
 // 6. Удаление карточки
 
-// Код добавлен в пункты 2 и 4.
-
-
-let elementis = document.querySelectorAll('.element')
-
-elementis.forEach((item) => {
-  item.querySelector('.element__delete-button').addEventListener('click', function removeCard(e) {
-    let dist = e.target.parentNode;
-    dist.remove()
-  })
-})
-
+function removeCard(e) {
+  let dist = e.target.parentNode;
+  dist.remove()
+}
 
 
 
