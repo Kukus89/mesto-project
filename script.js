@@ -29,6 +29,7 @@ function closePopupButtonClick() {  // Закрытие всех попапов 
     formItem[i].value = '';
   }
 }
+
 for (i = 0; i < popup.length; i++) {
   closeButton[i].addEventListener('click', closePopupButtonClick);
 }
@@ -79,6 +80,7 @@ function addCardDefault(placeName, srcPic) {
   element.querySelector('.element__like').addEventListener('click', cardLike)
   elementsList.append(element);
   element.querySelector('.element__delete-button').addEventListener('click', removeCard);
+  element.querySelector('.element__image').addEventListener('click', popupImage);
 }
 for (let i = 0; i < initialCards.length; i++) {
   addCardDefault(initialCards[i].name, initialCards[i].link)
@@ -124,6 +126,14 @@ function removeCard(e) {
   dist.remove()
 }
 
+// 7. Попап картинки
 
+let picc = document.querySelector('.popup__image');
+function popupImage(e) {
+  let parent = e.target.parentNode;
+  picc.alt = parent.querySelector('.element__title').textContent;
+  picc.src = parent.querySelector('.element__image').src;  
+  popup[2].classList.add('popup_opened', 'popup__image');
+}
 
 
