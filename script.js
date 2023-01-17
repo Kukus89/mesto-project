@@ -129,10 +129,12 @@ function removeCard(e) {
 // 7. Попап картинки
 
 let picc = document.querySelector('.popup__image');
+let imageSubtitle = document.querySelector('.popup__imageSubtitle');
 function popupImage(e) {
   let parent = e.target.parentNode;
   picc.alt = parent.querySelector('.element__title').textContent;
-  picc.src = parent.querySelector('.element__image').src;  
+  picc.src = parent.querySelector('.element__image').src; 
+  imageSubtitle.textContent = picc.alt
   popup[2].classList.add('popup_opened');
 }
 
