@@ -133,7 +133,7 @@ function popupImage(e) {
   let parent = e.target.parentNode;
   picc.alt = parent.querySelector('.element__title').textContent;
   picc.src = parent.querySelector('.element__image').src;  
-  popup[2].classList.add('popup_opened', 'popup__image');
+  popup[2].classList.add('popup_opened');
 }
 
 
