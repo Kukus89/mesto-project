@@ -1,7 +1,8 @@
  .popup__close-button {
-  /* position: fixed;
-  left: calc(50% + 215px + 8px);
-  bottom: calc(50% + 160px + 8px); */
+  position: relative;
+  align-self: flex-end; 
+  right: -40px; 
+  top: -40px;
   border: none;
   width: 32px;
   height: 32px;

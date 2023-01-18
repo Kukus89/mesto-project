@@ -1,14 +1,14 @@
-let profile = document.querySelector('.profile');
-let edite_button = profile.querySelector('.profile__edite-button');
-let addCardButton = profile.querySelector('.profile__add-button');
-let popup = document.querySelectorAll('.popup');
-let closeButton = document.querySelectorAll('.popup__close-button');
-let popup_profile_name = document.querySelector('.popup__profile_name');    // Поле ввода имени попапа 
-let popup_profile_subtitle = document.querySelector('.popup__profile_subtitle'); // Поле ввода профессии попапа
-let saveProfile = document.querySelector('.popup__submite-button');
-let saveCard = document.querySelector('.popup__saveCard-button');
-let profile_name = document.querySelector('.profile__name');
-let profile_subtitle = document.querySelector('.profile__subtitle');
+const profile = document.querySelector('.profile');
+const edite_button = profile.querySelector('.profile__edite-button');
+const addCardButton = profile.querySelector('.profile__add-button');
+const popup = document.querySelectorAll('.popup');
+const closeButton = document.querySelectorAll('.popup__close-button');
+const popup_profile_name = document.querySelector('.popup__profile_name');    // Поле ввода имени попапа 
+const popup_profile_subtitle = document.querySelector('.popup__profile_subtitle'); // Поле ввода профессии попапа
+const saveProfile = document.querySelector('.popup__submite-button');
+const saveCard = document.querySelector('.popup__saveCard-button');
+const profile_name = document.querySelector('.profile__name');
+const profile_subtitle = document.querySelector('.profile__subtitle');
 
 // Реализация функциональности проекта «Mesto» на JavaScript
 // 1. Работа модальных окон
@@ -128,12 +128,12 @@ function removeCard(e) {
 
 // 7. Попап картинки
 
-let picc = document.querySelector('.popup__image');
-let imageSubtitle = document.querySelector('.popup__imageSubtitle');
+let picc = document.querySelector('.popup__preview-image');
+let imageSubtitle = document.querySelector('.popup__preview-image-subtitle');
 function popupImage(e) {
   let parent = e.target.parentNode;
   picc.alt = parent.querySelector('.element__title').textContent;
-  picc.src = parent.querySelector('.element__image').src; 
+  picc.src = parent.querySelector('.element__image').src;
   imageSubtitle.textContent = picc.alt
   popup[2].classList.add('popup_opened');
 }

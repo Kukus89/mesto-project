@@ -1,6 +1,7 @@
 .popup__edite-form {
   display: flex;
   flex-direction: column;
+  position: relative;
   max-width: 430px;
   border-radius: 10px;
   background-color: #FFFFFF;

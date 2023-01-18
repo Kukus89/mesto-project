@@ -1,0 +1,9 @@
+.popup__preview-image-subtitle {
+  margin: 0; 
+  padding: 10px 0 0; 
+  align-self:flex-start; 
+  font-family: inter; 
+  font-size: 12px; 
+  font-weight: 400; 
+  line-height: 14.5px;
+}

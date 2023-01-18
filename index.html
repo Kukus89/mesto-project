@@ -36,6 +36,7 @@
     </footer>
     <div class="popup">
       <div class="popup__edite-form">
+        <button class="popup__close-button" type="button" title="Закрыть"></button>
         <h2 class="popup__title">Редактировать профиль</h2>
         <form class="input-form" name="input-form">
           <fieldset class="popup__input-container">
@@ -46,11 +47,11 @@
             <input class="popup__submite-button" name="submit" type="submit" value="Сохранить"></input>
           </fieldset>
         </form>
-        <button class="popup__close-button" type="button" title="Закрыть"></button>
       </div>
     </div>
     <div class="popup">
       <div class="popup__edite-form">
+        <button class="popup__close-button" type="button" title="Создать"></button>
         <h2 class="popup__title">Новое место</h2>
         <form class="input-form" name="input-form">
           <fieldset class="popup__input-container">
@@ -62,16 +63,13 @@
               value="Сохранить"></input>
           </fieldset>
         </form>
-        <button class="popup__close-button" type="button" title="Создать"></button>
       </div>
     </div>
-
     <div class="popup">
-      <div style="display: flex; flex-direction: column; position: relative;">
-        <button class="popup__close-button" style="position: relative; align-self: flex-end; right: -40px; top: -8px;" type="button" title="Создать"></button>
-        <img class="popup__image" src="" alt="Картинка">
-        <h3 class="popup__imageSubtitle" style="margin: 0; padding: 10px 0 0; align-self:flex-start; font-family: inter; font-size: 12px; font-weight: 400; line-height: 14.5px;">
-          Эт самое, мда</h3>
+      <div class="popup__preview-form">
+        <button class="popup__close-button popup__close-button_preview-close" type="button" title="Создать"></button>
+        <img class="popup__preview-image" src="" alt="Картинка">
+        <h3 class="popup__preview-image-subtitle"></h3>
       </div>
     </div>
 
