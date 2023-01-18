@@ -128,7 +128,7 @@ function removeCard(e) {
 
 // 7. Попап картинки
 
-let picc = document.querySelector('.popup__preview-image');
+let picc = document.querySelector('.popup__preview-image  ');
 let imageSubtitle = document.querySelector('.popup__preview-image-subtitle');
 function popupImage(e) {
   let parent = e.target.parentNode;
