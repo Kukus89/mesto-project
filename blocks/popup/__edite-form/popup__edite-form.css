@@ -11,6 +11,5 @@
 @media screen and (max-width: 520px) {
   .popup__edite-form {
     max-width: 282px;
-    left: calc(50% - 141px);
   }
 }

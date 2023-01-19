@@ -1,50 +1,53 @@
 const profile = document.querySelector('.profile');
-const edite_button = profile.querySelector('.profile__edite-button');
+const editeButton = profile.querySelector('.profile__edite-button');
 const addCardButton = profile.querySelector('.profile__add-button');
-const popup = document.querySelectorAll('.popup');
-const closeButton = document.querySelectorAll('.popup__close-button');
-const popup_profile_name = document.querySelector('.popup__profile_name');
-const popup_profile_subtitle = document.querySelector('.popup__profile_subtitle'); 
+const popups = document.querySelectorAll('.popup');
+const closeButtons = document.querySelectorAll('.popup__close-button');
+const popupProfileName = document.querySelector('.popup__profile_name');
+const popupProfileSubtitle = document.querySelector('.popup__profile_subtitle'); 
 const saveProfile = document.querySelector('.popup__submite-button');
 const saveCard = document.querySelector('.popup__saveCard-button');
-const profile_name = document.querySelector('.profile__name');
-const profile_subtitle = document.querySelector('.profile__subtitle');
+const profileName = document.querySelector('.profile__name');
+const profileSubtitle = document.querySelector('.profile__subtitle');
+const formItems = document.querySelectorAll('.popup__form-item')
+const picc = document.querySelector('.popup__preview-image  ');
+const imageSubtitle = document.querySelector('.popup__preview-image-subtitle');
+
 
 // Реализация функциональности проекта «Mesto» на JavaScript
 // 1. Работа модальных окон
 
 function editeProfileButtonClick() {
-  popup_profile_name.value = profile_name.textContent;
-  popup_profile_subtitle.value = profile_subtitle.textContent;
-  popup[0].classList.add('popup_opened');
+  popupProfileName.value = profileName.textContent;
+  popupProfileSubtitle.value = profileSubtitle.textContent;
+  popups[0].classList.add('popup_opened');
 }
-edite_button.addEventListener('click', editeProfileButtonClick);
+editeButton.addEventListener('click', editeProfileButtonClick);
 
 function closePopupButtonClick() {  // Закрытие всех попапов "крестиком"
-  let formItem = document.querySelectorAll('.popup__form-item')
-  for (i = 0; i < popup.length; i++) {
-    popup[i].classList.remove('popup_opened');
+  for (i = 0; i < popups.length; i++) {
+    popups[i].classList.remove('popup_opened');
   }
-  for (i = 0; i < formItem.length; i++) {
-    formItem[i].value = '';
+  for (i = 0; i < formItems.length; i++) {
+    formItems[i].value = '';
   }
 }
 
-for (i = 0; i < popup.length; i++) {
-  closeButton[i].addEventListener('click', closePopupButtonClick);
+for (i = 0; i < popups.length; i++) {
+  closeButtons[i].addEventListener('click', closePopupButtonClick);
 }
 
 function formSubmitHandler(evt) {
   evt.preventDefault();
-  profile_name.textContent = popup_profile_name.value;
-  profile_subtitle.textContent = popup_profile_subtitle.value;
+  profileName.textContent = popupProfileame.value;
+  profileSubtitle.textContent = popupProfileSubtitle.value;
 }
 saveProfile.addEventListener('submit', formSubmitHandler);
 
 
 // 2. Шесть карточек «из коробки»
 
-let initialCards = [
+const initialCards = [
   {
     name: 'Архыз',
     link: 'https://pictures.s3.yandex.net/frontend-developer/cards-compressed/arkhyz.jpg'
@@ -71,10 +74,35 @@ let initialCards = [
   }
 ];
 
+//Задания не по порядку т.к. вызов функции после её объявления
+// 5. Лайк карточки
+
+function cardLike(e) {
+  e.target.classList.toggle('element__like_active')
+}
+
+// 6. Удаление карточки
+
+function removeCard(e) {
+  const dist = e.target.parentNode;
+  dist.remove()
+}
+
+// 7. Попап картинки
+
+
+function popupImage(e) {
+  const parent = e.target.parentNode;
+  picc.alt = parent.querySelector('.element__title').textContent;
+  picc.src = parent.querySelector('.element__image').src;
+  imageSubtitle.textContent = picc.alt
+  popups[2].classList.add('popup_opened');
+}
+
 function addCardDefault(placeName, srcPic) {
-  let cardTemplate = document.querySelector('.templateElements').content;
-  let elementsList = document.querySelector('.elements__list');
-  let element = cardTemplate.querySelector('.element').cloneNode(true);
+  const cardTemplate = document.querySelector('.templateElements').content;
+  const elementsList = document.querySelector('.elements__list');
+  const element = cardTemplate.querySelector('.element').cloneNode(true);
   element.querySelector('.element__image').src = srcPic;
   element.querySelector('.element__title').textContent = placeName;
   element.querySelector('.element__like').addEventListener('click', cardLike)
@@ -91,9 +119,9 @@ for (let i = 0; i < initialCards.length; i++) {
 // форма добавлена в разметку т.к. в тренажере не рекомендуется переводить разметку модальных окон в template.
 
 function addCardButtonClick() {
-  popup_profile_name.value = profile_name.textContent;
-  popup_profile_subtitle.value = profile_subtitle.textContent;
-  popup[1].classList.add('popup_opened');
+  popupProfileName.value = profileName.textContent;
+  popupProfileSubtitle.value = profileSubtitle.textContent;
+  popups[1].classList.add('popup_opened');
 }
 addCardButton.addEventListener('click', addCardButtonClick);
 
@@ -108,34 +136,12 @@ function addCard(evt) {
   element.querySelector('.element__title').textContent = document.querySelector('.popup__area-name').value;
   element.querySelector('.element__like').addEventListener('click', cardLike)
   element.querySelector('.element__delete-button').addEventListener('click', removeCard);
+  element.querySelector('.element__image').addEventListener('click', popupImage);
   elementsList.prepend(element);
   closePopupButtonClick();
 }
 saveCard.addEventListener('click', addCard);
 
-// 5. Лайк карточки
 
-function cardLike(e) {
-  e.target.classList.toggle('element__like_active')
-}
-
-// 6. Удаление карточки
-
-function removeCard(e) {
-  let dist = e.target.parentNode;
-  dist.remove()
-}
-
-// 7. Попап картинки
-
-let picc = document.querySelector('.popup__preview-image  ');
-let imageSubtitle = document.querySelector('.popup__preview-image-subtitle');
-function popupImage(e) {
-  let parent = e.target.parentNode;
-  picc.alt = parent.querySelector('.element__title').textContent;
-  picc.src = parent.querySelector('.element__image').src;
-  imageSubtitle.textContent = picc.alt
-  popup[2].classList.add('popup_opened');
-}
 
 
