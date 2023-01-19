@@ -27,13 +27,13 @@ buttonEditeProfile.addEventListener('click', editeProfileButtonClick);
 
 // Попап профиля
 
-function handleSubmitEditProfileForm(evt) {
-  evt.preventDefault();
+function handleSubmitEditProfileForm(event) {
+  event.preventDefault();
   profileName.textContent = popupProfileName.value;
   profileSubtitle.textContent = popupProfileSubtitle.value;
   popupEditeProfile.classList.remove('popup_opened');
 }
-popupSubmitSaveProfileButton.addEventListener('click', handleSubmitEditProfileForm);
+popupSubmitSaveProfileButton.addEventListener('submit', handleSubmitEditProfileForm);
 
 // Закрытие всех попапов "крестиком"
 
