@@ -15,6 +15,9 @@ const imageSubtitle = document.querySelector('.popup__preview-image-subtitle');
 const popupEditeProfile = document.querySelector('.popup_edite-profile');
 const popupCardAdd = document.querySelector('.popup_card-add');
 const newCardAddPlace = document.querySelector('.elements__list');
+const formProfileEdite = document.querySelector('.popup__form_editeProfile');
+const formCardAdd = document.querySelector('.popup__form_newCardAdd');
+const newCardTemplate = document.querySelector('.templateElements').content;
 
 // Открытие попапа профиля
 
@@ -25,6 +28,8 @@ function editeProfileButtonClick() {
 }
 buttonEditeProfile.addEventListener('click', editeProfileButtonClick);
 
+
+
 // Попап профиля
 
 function handleSubmitEditProfileForm(event) {
@@ -33,7 +38,7 @@ function handleSubmitEditProfileForm(event) {
   profileSubtitle.textContent = popupProfileSubtitle.value;
   popupEditeProfile.classList.remove('popup_opened');
 }
-popupSubmitSaveProfileButton.addEventListener('submit', handleSubmitEditProfileForm);
+formProfileEdite.addEventListener('submit', handleSubmitEditProfileForm);
 
 // Закрытие всех попапов "крестиком"
 
@@ -49,7 +54,7 @@ for (i = 0; i < popups.length; i++) {
   buttonsClose[i].addEventListener('click', closePopupButtonClick);
 }
 
-// 3. Попап добавления карточки
+// 3. Попап формы добавления карточки
 
 function addCardButtonClick() {
   popupProfileName.value = profileName.textContent;
@@ -62,8 +67,6 @@ buttonAddCard.addEventListener('click', addCardButtonClick);
 
 // форма готовой карточки
 function addCard(placeName, srcPic) {
-  const newCardAddPlace = document.querySelector('.elements__list');
-  const newCardTemplate = document.querySelector('.templateElements').content;
   const element = newCardTemplate.querySelector('.element').cloneNode(true);
   const elementImage = element.querySelector('.element__image')
   elementImage.src = srcPic;
@@ -71,18 +74,19 @@ function addCard(placeName, srcPic) {
   element.querySelector('.element__like').addEventListener('click', like)
   element.querySelector('.element__delete-button').addEventListener('click', removeCard);
   elementImage.addEventListener('click', popupImage);
-  return element
   closePopupButtonClick();
+  return element
 }
 
 // добавление новой карточки
-function addNewCard() {
+function addNewCard(event) {
+  event.preventDefault()
   const imageSrc = document.querySelector('.popup__src-image').value;
   const popupAreaName = document.querySelector('.popup__area-name').value;
   newCardAddPlace.prepend(addCard(popupAreaName, imageSrc));
 }
 
-popupSubmitAddCardButton.addEventListener('click', addNewCard);
+formCardAdd.addEventListener('submit', addNewCard);
 
 // 2. Шесть карточек «из коробки»
 
@@ -98,19 +102,21 @@ function like(e) {
 
 // 6. Удаление карточки
 
-function removeCard(e) {
-  const cardAdded = e.target.parentNode;
-  cardAdded.remove()
+function removeCard(element) {
+  element.target.closest('.element').remove();
 }
 
 // 7. Попап картинки
 
-function popupImage(e) {
-  const parent = e.target.parentNode;
-  popupPreviewImage.alt = parent.querySelector('.element__title').textContent;
-  popupPreviewImage.src = parent.querySelector('.element__image').src;
+function popupImage(element) {
+  const cardAdded = element.target.closest('.element');
+  popupPreviewImage.alt = cardAdded.querySelector('.element__title').textContent;
+  popupPreviewImage.src = cardAdded.querySelector('.element__image').src;
   imageSubtitle.textContent = popupPreviewImage.alt
-  popups[2].classList.add('popup_opened');
+  document.querySelector('.popup_preview').classList.add('popup_opened');
 }
 
 
+// Нужно пройтись по константам в функциях и вынести то, что можно
+//
+//
