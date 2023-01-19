@@ -34,31 +34,32 @@
       <p class="footer__copyright">© 2023
         Mesto Russia</p>
     </footer>
-    <div class="popup">
+    <div class="popup popup_edite-profile">
       <div class="popup__edite-form">
         <button class="popup__close-button" type="button" title="Закрыть"></button>
         <h2 class="popup__title">Редактировать профиль</h2>
         <form class="input-form" name="input-form">
           <fieldset class="popup__input-container">
-            <input class="popup__profile_name popup__form-item" name="profile_name" placeholder="Имя"
-              type="text" required></input>
+            <input class="popup__profile_name popup__form-item" name="profile_name" placeholder="Имя" type="text"
+              required></input>
             <input class="popup__profile_subtitle popup__form-item" name="profile_subtitle" placeholder="Профессия"
               type="text" required></input>
-            <button class="popup__submite-button popup__submite-button_profile-save" name="submit" type="submit" value="Сохранить">Сохранить</button>
+            <button class="popup__submite-button popup__submite-button_profile-save" name="submit" type="submit"
+              value="Сохранить">Сохранить</button>
           </fieldset>
         </form>
       </div>
     </div>
-    <div class="popup">
+    <div class="popup popup_card-add">
       <div class="popup__edite-form">
         <button class="popup__close-button" type="button" title="Создать"></button>
         <h2 class="popup__title">Новое место</h2>
         <form class="input-form" name="input-form">
           <fieldset class="popup__input-container">
-            <input class="popup__area-name popup__form-item" name="profile_name" placeholder="Название"
-              type="text" required></input>
-            <input required class="popup__src-image popup__form-item" name="profile_subtitle" placeholder="Ссылка на картинку"
-              type="text" required></input>
+            <input class="popup__area-name popup__form-item" name="profile_name" placeholder="Название" type="text"
+              required></input>
+            <input required class="popup__src-image popup__form-item" name="profile_subtitle"
+              placeholder="Ссылка на картинку" type="text" required></input>
             <button class="popup__submite-button popup__submite-button_card-add" name="saveCard" type="submit"
               value="Сохранить">Сохранить</button>
           </fieldset>
@@ -82,8 +83,8 @@
       <button type="button" title="Удалить" class="element__delete-button"> </button>
     </li>
   </template>
-
-  <script src="./script.js"></script>
+  <script src="./scripts/cards.js"></script>
+  <script src="./scripts/script.js"></script>
 </body>
 
 </html>
