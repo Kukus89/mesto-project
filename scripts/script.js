@@ -15,9 +15,7 @@ const formCardAdd = document.querySelector('.popup__form_newCardAdd');
 const newCardTemplate = document.querySelector('.templateElements').content;
 const popupPreiw = document.querySelector('.popup_preview')
 
-
 // Открытие попапа профиля
-
 function editeProfileButtonClick() {
   popupProfileName.value = profileName.textContent;
   popupProfileSubtitle.value = profileSubtitle.textContent;
@@ -29,7 +27,6 @@ function editeProfileButtonClick() {
 buttonEditeProfile.addEventListener('click', editeProfileButtonClick);
 
 // Сохранение профиля
-
 function handleSubmitEditProfileForm(event) {
   event.preventDefault();
   profileName.textContent = popupProfileName.value;
@@ -39,7 +36,6 @@ function handleSubmitEditProfileForm(event) {
 formProfileEdite.addEventListener('submit', handleSubmitEditProfileForm);
 
 // 3. Попап формы добавления карточки
-
 function addCardButtonClick() {
   popupProfileName.value = profileName.textContent;
   popupProfileSubtitle.value = profileSubtitle.textContent;
@@ -51,7 +47,6 @@ function addCardButtonClick() {
 buttonAddCard.addEventListener('click', addCardButtonClick);
 
 // 4. Добавление карточек
-
 // форма готовой карточки
 function addCard(placeName, srcPic) {
   const element = newCardTemplate.querySelector('.element').cloneNode(true);
