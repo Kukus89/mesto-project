@@ -16,6 +16,8 @@ const newCardTemplate = document.querySelector('.templateElements').content;
 const popupPreview = document.querySelector('.popup_preview');
 const closeButton = document.querySelector('.popup__close-button');
 const popups = document.querySelectorAll('.popup');
+const popupAreaName = document.querySelector('.popup__area-name');
+const imageSrc = document.querySelector('.popup__src-image');  
 
 // Открытие попапа профиля
 function editeProfileButtonClick() {
@@ -36,8 +38,6 @@ formProfileEdite.addEventListener('submit', handleSubmitEditProfileForm);
 
 // 3. Попап формы добавления карточки
 function addCardButtonClick() {
-  popupProfileName.value = profileName.textContent;
-  popupProfileSubtitle.value = profileSubtitle.textContent;
   openPopup(popupCardAdd);
 }
 buttonAddCard.addEventListener('click', addCardButtonClick);
@@ -63,10 +63,10 @@ function createCard(placeName, srcPic) {
 // добавление новой карточки
 function addNewCard(event) {
   event.preventDefault();
-  const imageSrc = document.querySelector('.popup__src-image').value;
-  const popupAreaName = document.querySelector('.popup__area-name').value;
-  newCardAddPlace.prepend(createCard(popupAreaName, imageSrc));
-  closePopup(popupCardAdd)
+  newCardAddPlace.prepend(createCard(popupAreaName.value, imageSrc.value));
+  closePopup(popupCardAdd);
+  popupAreaName.value = '';
+  imageSrc.value = '';
 }
 
 formCardAdd.addEventListener('submit', addNewCard);
@@ -100,6 +100,6 @@ function closePopup(popupElement) {
 popups.forEach(element => {
   const closeButton = element.querySelector('.popup__close-button')
   closeButton.addEventListener('click', () => {
-    element.classList.remove('popup_opened')
+    closePopup(element);
   })
 });
