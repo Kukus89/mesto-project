@@ -19,14 +19,6 @@ const popups = document.querySelectorAll('.popup');
 const popupAreaName = document.querySelector('.popup__area-name');
 const imageSrc = document.querySelector('.popup__src-image');  
 
-
-//тестовый блок
-
-document.addEventListener('keydown', function () {
-  console.log('На что ни нажми — я появлюсь');
-}); 
-
-
 // Открытие попапа профиля
 function editeProfileButtonClick() {
   popupProfileName.value = profileName.textContent;
