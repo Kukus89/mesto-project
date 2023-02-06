@@ -20,6 +20,8 @@ const popupAreaName = document.querySelector('.popup__area-name');
 const imageSrc = document.querySelector('.popup__src-image');
 const newCardForm = document.forms.newCardForm;
 
+console.log(newCardForm.elements);
+
 // Открытие попапа профиля
 function editeProfileButtonClick() {
   popupProfileName.value = profileName.textContent;
