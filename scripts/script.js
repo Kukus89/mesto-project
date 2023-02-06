@@ -17,15 +17,8 @@ const popupPreview = document.querySelector('.popup_preview');
 const closeButton = document.querySelector('.popup__close-button');
 const popups = document.querySelectorAll('.popup');
 const popupAreaName = document.querySelector('.popup__area-name');
-const imageSrc = document.querySelector('.popup__src-image');  
-
-
-//тестовый блок
-
-document.addEventListener('keydown', function () {
-  console.log('На что ни нажми — я появлюсь');
-}); 
-
+const imageSrc = document.querySelector('.popup__src-image');
+const newCardForm = document.forms.newCardForm;
 
 // Открытие попапа профиля
 function editeProfileButtonClick() {
@@ -57,7 +50,6 @@ function createCard(placeName, srcPic) {
   const elementImage = element.querySelector('.element__image')
   elementImage.src = srcPic;
   element.querySelector('.element__title').textContent = placeName;
-  element.querySelector('.element__like').addEventListener('click', like)
   element.querySelector('.element__delete-button').addEventListener('click', removeCard);
   elementImage.addEventListener('click', () => {
     popupPreviewImage.alt = placeName;
@@ -73,8 +65,7 @@ function addNewCard(event) {
   event.preventDefault();
   newCardAddPlace.prepend(createCard(popupAreaName.value, imageSrc.value));
   closePopup(popupCardAdd);
-  popupAreaName.value = '';
-  imageSrc.value = '';
+  newCardForm.reset()
 }
 
 formCardAdd.addEventListener('submit', addNewCard);
@@ -85,9 +76,12 @@ initialCards.forEach(element => {
 });
 
 // 5. Лайк карточки
-function like(e) {
-  e.target.classList.toggle('element__like_active')
+function like (evt) {
+  if (evt.target.classList.contains('element__like')) {
+    evt.target.classList.toggle('element__like_active');
+  }
 }
+newCardAddPlace.addEventListener('click', like)
 
 // 6. Удаление карточки
 function removeCard(element) {
@@ -99,7 +93,7 @@ function openPopup(popupElement) {
   popupElement.classList.add('popup_opened')
 }
 
-// Функция открытия попапа
+// Функция закрытия попапа
 function closePopup(popupElement) {
   popupElement.classList.remove('popup_opened')
 }
@@ -111,3 +105,6 @@ popups.forEach(element => {
     closePopup(element);
   })
 });
+
+
+
