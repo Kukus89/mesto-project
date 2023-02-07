@@ -105,25 +105,32 @@ popups.forEach(element => {
   })
 });
 
-
+//
 // Валидация форм
+//
 
 const profileForm = document.querySelector('.input-form'); //
 const formInputName = profileForm.querySelector('.popup__profile_name')
+const inputError = profileForm.querySelector('.popup__input-error-message')
+
 
 //Отображение ошибки
-function showInputError(element) {
+function showInputError(element, textError) {
   element.classList.add('popup__form-input_type_error')
+  inputError.textContent = textError
+  inputError.classList.add('popup__input-error-message_active')
 }
 
 //Скрытие ошибки
 function hideInputError(element) {
   element.classList.remove('popup__form-input_type_error')
+  inputError.textContent = ''
+  inputError.classList.remove('popup__input-error-message_active')
 }
 
 function isValid() {
   if (!formInputName.validity.valid) {
-    showInputError(formInputName)
+    showInputError(formInputName, formInputName.validationMessage)
   } else {
     hideInputError(formInputName)
   }
