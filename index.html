@@ -38,12 +38,12 @@
       <div class="popup__form popup__form_editeProfile">
         <button class="popup__close-button popup__close-button-profile" type="button" title="Закрыть"></button>
         <h2 class="popup__title">Редактировать профиль</h2>
-        <form class="input-form" name="edite-form">
+        <form class="input-form" name="edite-form" novalidate>
           <fieldset class="popup__input-container">
-            <input class="popup__profile_name popup__form-item" name="profile_name" placeholder="Имя" type="text"
-              required></input>
-            <input class="popup__profile_subtitle popup__form-item" name="profile_subtitle" placeholder="Профессия"
-              type="text" required></input>
+            <input class="popup__profile_name popup__form-input" name="profile_name" placeholder="Имя" type="text"
+              required minlength="2" maxlength="40"></input>
+            <input class="popup__profile_subtitle popup__form-input" name="profile_subtitle" placeholder="Профессия"
+              type="text" required minlength="2" maxlength="200"></input>
             <button class="popup__submite-button popup__submite-button_profile-save" name="submit" type="submit"
               value="Сохранить">Сохранить</button>
           </fieldset>
@@ -56,9 +56,9 @@
         <h2 class="popup__title">Новое место</h2>
         <form class="input-form" name="newCardForm">
           <fieldset class="popup__input-container">
-            <input class="popup__area-name popup__form-item" name="profile_name" placeholder="Название" type="text"
+            <input class="popup__area-name popup__form-input" name="profile_name" placeholder="Название" type="text"
               required></input>
-            <input required class="popup__src-image popup__form-item" name="profile_subtitle"
+            <input required class="popup__src-image popup__form-input" name="profile_subtitle"
               placeholder="Ссылка на картинку" type="text" required></input>
             <button class="popup__submite-button popup__submite-button_card-add" name="saveCard" type="submit"
               value="Сохранить">Сохранить</button>

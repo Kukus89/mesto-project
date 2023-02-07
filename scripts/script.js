@@ -18,9 +18,6 @@ const closeButton = document.querySelector('.popup__close-button');
 const popups = document.querySelectorAll('.popup');
 const popupAreaName = document.querySelector('.popup__area-name');
 const imageSrc = document.querySelector('.popup__src-image');
-const newCardForm = document.forms.newCardForm;
-
-console.log(newCardForm.elements);
 
 // Открытие попапа профиля
 function editeProfileButtonClick() {
@@ -67,7 +64,7 @@ function addNewCard(event) {
   event.preventDefault();
   newCardAddPlace.prepend(createCard(popupAreaName.value, imageSrc.value));
   closePopup(popupCardAdd);
-  newCardForm.reset()
+  event.target.reset();
 }
 
 formCardAdd.addEventListener('submit', addNewCard);
@@ -78,7 +75,7 @@ initialCards.forEach(element => {
 });
 
 // 5. Лайк карточки
-function like (evt) {
+function like(evt) {
   if (evt.target.classList.contains('element__like')) {
     evt.target.classList.toggle('element__like_active');
   }
@@ -109,4 +106,29 @@ popups.forEach(element => {
 });
 
 
+// Валидация форм
+
+const profileForm = document.querySelector('.input-form'); //
+const formInputName = profileForm.querySelector('.popup__profile_name')
+
+//Отображение ошибки
+function showInputError(element) {
+  element.classList.add('popup__form-input_type_error')
+}
+
+//Скрытие ошибки
+function hideInputError(element) {
+  element.classList.remove('popup__form-input_type_error')
+}
+
+function isValid() {
+  if (!formInputName.validity.valid) {
+    showInputError(formInputName)
+  } else {
+    hideInputError(formInputName)
+  }
+}
+
+//Функция слежения за "инпутом" поля ввода
+formInputName.addEventListener('input', isValid)
 
