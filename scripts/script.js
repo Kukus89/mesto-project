@@ -18,6 +18,7 @@ const closeButton = document.querySelector('.popup__close-button');
 const popups = document.querySelectorAll('.popup');
 const popupAreaName = document.querySelector('.popup__area-name');
 const imageSrc = document.querySelector('.popup__src-image');
+const popupForms = document.querySelectorAll('.popup__form')
 
 // Открытие попапа профиля
 
@@ -107,15 +108,26 @@ popups.forEach(element => {
   })
 });
 
-const popupForms = document.querySelectorAll('.popup__form')
+//Закрытие попапа кликом вне
+
 popupForms.forEach(element => {
-  element.addEventListener('click', (e) => {
-    const shadowClick = e.composedPath().includes(e);
+  // console.log(path);
+  document.addEventListener('click', (e) => {
+    const shadowClick = e.composedPath().includes(element);
+    console.log(e.composedPath());
+    console.log(shadowClick);
     if (!shadowClick) {
-      closePopup(element.closest('.popup'))
+      // console.log('123');
+      // closePopup(element.closest('.popup'))
     }
   })
 });
+
+
+
+
+
+
 
 
 //
