@@ -20,9 +20,11 @@ const popupAreaName = document.querySelector('.popup__area-name');
 const imageSrc = document.querySelector('.popup__src-image');
 
 // Открытие попапа профиля
+
 function editeProfileButtonClick() {
   popupProfileName.value = profileName.textContent;
   popupProfileSubtitle.value = profileSubtitle.textContent;
+  formListener() // иначе не пройдет валидацию и сабмит будет неактивным
   openPopup(popupEditeProfile);
 }
 buttonEditeProfile.addEventListener('click', editeProfileButtonClick);
@@ -105,37 +107,94 @@ popups.forEach(element => {
   })
 });
 
+const popupForms = document.querySelectorAll('.popup__form')
+popupForms.forEach(element => {
+  element.addEventListener('click', (e) => {
+    const shadowClick = e.composedPath().includes(e);
+    if (!shadowClick) {
+      closePopup(element.closest('.popup'))
+    }
+  })
+});
+
+
 //
 // Валидация форм
 //
 
-const profileForm = document.querySelector('.input-form'); //
-const formInputName = profileForm.querySelector('.popup__profile_name')
-const inputError = profileForm.querySelector('.popup__input-error-message')
+// const profileForm = document.querySelector('.input-form'); //
+// const formInputName = profileForm.querySelector('.popup__profile_name')
+// const inputError = profileForm.querySelector('.popup__input-error-message')
 
 
 //Отображение ошибки
-function showInputError(element, textError) {
-  element.classList.add('popup__form-input_type_error')
+function showInputError(formElement, InputFormElement, textError) {
+  const inputError = formElement.querySelector(`.${InputFormElement.id}-error`)
+  InputFormElement.classList.add('popup__form-input_type_error')
   inputError.textContent = textError
   inputError.classList.add('popup__input-error-message_active')
 }
 
 //Скрытие ошибки
-function hideInputError(element) {
-  element.classList.remove('popup__form-input_type_error')
+function hideInputError(formElement, InputFormElement) {
+  const inputError = formElement.querySelector(`.${InputFormElement.id}-error`)
+  InputFormElement.classList.remove('popup__form-input_type_error')
   inputError.textContent = ''
   inputError.classList.remove('popup__input-error-message_active')
 }
 
-function isValid() {
-  if (!formInputName.validity.valid) {
-    showInputError(formInputName, formInputName.validationMessage)
+function isValid(form, formInput) {
+  if (formInput.validity.patternMismatch) {
+    formInput.setCustomValidity(formInput.dataset.errorMessage);
   } else {
-    hideInputError(formInputName)
+    formInput.setCustomValidity('');
+  }
+  if (!formInput.validity.valid) {
+    showInputError(form, formInput, formInput.validationMessage)
+  } else {
+    hideInputError(form, formInput)
   }
 }
 
-//Функция слежения за "инпутом" поля ввода
-formInputName.addEventListener('input', isValid)
+//Слушатель на все инпуты в форме
 
+function inputListener(form) {
+  const formInputs = Array.from(form.querySelectorAll('.popup__form-input'));
+  const button = form.querySelector('.popup__submite-button');
+  buttonActive(formInputs, button);
+  formInputs.forEach(formInput => {
+    formInput.addEventListener('input', () => {
+      isValid(form, formInput)
+      buttonActive(formInputs, button)
+    })
+  });
+}
+
+//Слушатель на формы
+
+function formListener() {
+  const forms = Array.from(document.querySelectorAll('.input-form'));
+  forms.forEach(form => {
+    inputListener(form)
+  })
+}
+
+//проверка полей ввода на валидность до взаимодействия с инпутом
+
+function hasInvalid(formInputs) {
+  return formInputs.some((input) => {
+    return !input.validity.valid;
+  })
+}
+
+function buttonActive(inputs, button) {
+  if (hasInvalid(inputs)) {
+    button.disabled = true;;
+    button.classList.add('popup__submite-button_disabled');
+  } else {
+    button.disabled = false;
+    button.classList.remove('popup__submite-button_disabled');
+  }
+}
+
+formListener()
