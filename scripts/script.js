@@ -1,4 +1,5 @@
-const profile = document.querySelector('.profile');
+import { initialCards } from "./cards.js";
+export const profile = document.querySelector('.profile');
 const buttonEditeProfile = profile.querySelector('.profile__edite-button');
 const buttonAddCard = profile.querySelector('.profile__add-button');
 const popupProfileName = document.querySelector('.popup__profile_name');
@@ -25,8 +26,9 @@ const popupForms = document.querySelectorAll('.popup__form')
 function editeProfileButtonClick() {
   popupProfileName.value = profileName.textContent;
   popupProfileSubtitle.value = profileSubtitle.textContent;
-  formListener() // иначе не пройдет валидацию и сабмит будет неактивным
+  formListener() // иначе не пройдет валидацию и сабмит будет активным
   openPopup(popupEditeProfile);
+
 }
 buttonEditeProfile.addEventListener('click', editeProfileButtonClick);
 
@@ -108,27 +110,22 @@ popups.forEach(element => {
   })
 });
 
-//Закрытие попапа кликом вне
+//Закрытие попапа Искейпом и кликом вне
 
-popupForms.forEach(element => {
-  // console.log(path);
-  document.addEventListener('click', (e) => {
-    const shadowClick = e.composedPath().includes(element);
-    console.log(e.composedPath());
-    console.log(shadowClick);
-    if (!shadowClick) {
-      // console.log('123');
-      // closePopup(element.closest('.popup'))
+popups.forEach(element => {
+  document.addEventListener('keydown', (e) => {
+    if (e.key == 'Escape') {
+      closePopup(element)
     }
   })
-});
-
-
-
-
-
-
-
+  element.addEventListener('click', (e) => {
+    const targetForm = element.querySelector('.popup__form')
+    const shadowClick = e.composedPath().includes(targetForm);
+    if (!shadowClick) {
+      closePopup(element)
+    }
+  })
+})
 
 //
 // Валидация форм
@@ -137,7 +134,6 @@ popupForms.forEach(element => {
 // const profileForm = document.querySelector('.input-form'); //
 // const formInputName = profileForm.querySelector('.popup__profile_name')
 // const inputError = profileForm.querySelector('.popup__input-error-message')
-
 
 //Отображение ошибки
 function showInputError(formElement, InputFormElement, textError) {
