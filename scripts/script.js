@@ -1,5 +1,5 @@
 import { initialCards } from "./cards.js";
-export const profile = document.querySelector('.profile');
+const profile = document.querySelector('.profile');
 const buttonEditeProfile = profile.querySelector('.profile__edite-button');
 const buttonAddCard = profile.querySelector('.profile__add-button');
 const popupProfileName = document.querySelector('.popup__profile_name');
