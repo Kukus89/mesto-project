@@ -1,3 +1,4 @@
+import "../pages/index.css";
 import { initialCards } from "./cards.js";
 const profile = document.querySelector('.profile');
 const buttonEditeProfile = profile.querySelector('.profile__edite-button');

@@ -1,6 +1,7 @@
 const path = require('path');
 const HtmlWebpackPlugin = require('html-webpack-plugin'); // подключите плагин 
 const { CleanWebpackPlugin } = require('clean-webpack-plugin'); // подключили плагин 
+const MiniCssExtractPlugin = require('mini-css-extract-plugin');
 module.exports = {
   entry: { main: './scripts/script.js' },
   output: {
@@ -25,7 +26,18 @@ module.exports = {
       {
         test: /\.(png|svg|jpg|gif|woff(2)?|eot|ttf|otf)$/,
         type: 'asset/resource'
-      }
+      },
+      {
+        // применять это правило только к CSS-файлам
+        test: /\.css$/,
+        // при обработке этих файлов нужно использовать
+        // MiniCssExtractPlugin.loader и css-loader
+        use: [MiniCssExtractPlugin.loader, {
+          loader: 'css-loader',
+          options: { importLoaders: 1 }
+        },
+          'postcss-loader']
+      },
     ]
   },
   plugins: [
@@ -33,5 +45,6 @@ module.exports = {
       template: '/index.html' // путь к файлу index.html
     }),
     new CleanWebpackPlugin(), // использовали плагин
+    new MiniCssExtractPlugin()
   ]
 }
