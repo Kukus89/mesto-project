@@ -2,13 +2,13 @@ const profile = document.querySelector('.profile');
 const buttonEditeProfile = profile.querySelector('.profile__edite-button');
 const buttonAddCard = profile.querySelector('.profile__add-button');
 const popups = document.querySelectorAll('.popup');
-import { popupProfileName } from "../script";
-import { popupProfileSubtitle } from "../script";
-import { popupEditeProfile } from "../script";
+import { popupProfileName } from "../index.js";
+import { popupProfileSubtitle } from "../index.js";
+import { popupEditeProfile } from "../index.js";
 import { formListener } from "./validate";
-import { profileName } from "../script";
-import { profileSubtitle } from "../script";
-import { popupCardAdd } from "../script";
+import { profileName } from "../index.js";
+import { profileSubtitle } from "../index.js";
+import { popupCardAdd } from "../index.js";
 
 // Открытие попапа профиля
 function editeProfileButtonClick() {
@@ -29,6 +29,7 @@ buttonAddCard.addEventListener('click', addCardButtonClick);
 // Функция открытия попапа
 export function openPopup(popupElement) {
   popupElement.classList.add('popup_opened')
+  closeByKey();
 }
 
 // Функция закрытия попапа
@@ -45,17 +46,21 @@ popups.forEach(element => {
 });
 
 //Закрытие попапа Искейпом и кликом вне
-popups.forEach(element => {
-  document.addEventListener('keydown', (e) => {
-    if (e.key == 'Escape') {
-      closePopup(element)
-    }
+
+function closeByKey(params) {
+  popups.forEach(element => {
+    document.addEventListener('keydown', (e) => {
+      if (e.key == 'Escape') {
+        closePopup(element)
+      }
+    })
+    element.addEventListener('click', (e) => {
+      const targetForm = element.querySelector('.popup__form')
+      const shadowClick = e.composedPath().includes(targetForm);
+      if (!shadowClick) {
+        closePopup(element)
+      }
+    })
   })
-  element.addEventListener('click', (e) => {
-    const targetForm = element.querySelector('.popup__form')
-    const shadowClick = e.composedPath().includes(targetForm);
-    if (!shadowClick) {
-      closePopup(element)
-    }
-  })
-})
+}
+

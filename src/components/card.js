@@ -1,5 +1,5 @@
-import { openPopup, closePopup } from "./modal";
-import { popupCardAdd } from "../script";
+import { openPopup, closePopup } from "./modal.js";
+import { popupCardAdd } from "../index.js";
 import { initialCards } from "./defaultCards";
 const popupAreaName = document.querySelector('.popup__area-name');
 const imageSrc = document.querySelector('.popup__src-image');

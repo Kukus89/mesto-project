@@ -71,13 +71,12 @@
               type="text" required 
               minlength="2" 
               maxlength="30"
-              pattern="^[a-zA-Z]+$"
+              pattern="^[a-zA-Z0-9\wа-яА-Я\-\u{0020}]+$"
               data-error-message="поле может содержать только латинские буквы, кириллические буквы, знаки дефиса и пробелы"
               ></input>
             <span class="popup__input-error-message area-name-error"></span>
             <input id="src-image" required class="popup__src-image popup__form-input" name="profile_subtitle"
-              placeholder="Ссылка на картинку" type="text" required 
-              data-error-message="поле может содержать только латинские буквы, кириллические буквы, знаки дефиса и пробелы"
+              placeholder="Ссылка на картинку" type="url" required 
               ></input>
             <span class="popup__input-error-message src-image-error"></span>
             <button class="popup__submite-button popup__submite-button_card-add" name="saveCard" type="submit"
