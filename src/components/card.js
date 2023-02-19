@@ -1,5 +1,4 @@
 import { openPopup, closePopup } from "./modal.js";
-import { popupCardAdd } from "../index.js";
 import { initialCards } from "./defaultCards";
 const popupAreaName = document.querySelector('.popup__area-name');
 const imageSrc = document.querySelector('.popup__src-image');
@@ -9,6 +8,7 @@ const popupPreview = document.querySelector('.popup_preview');
 const popupPreviewImage = document.querySelector('.popup__preview-image');
 const imageSubtitle = document.querySelector('.popup__preview-image-subtitle');
 const newCardAddPlace = document.querySelector('.elements__list');
+export const popupCardAdd = document.querySelector('.popup_card-add');
 
 // форма готовой карточки
 function createCard(placeName, srcPic) {

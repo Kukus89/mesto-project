@@ -28,7 +28,6 @@ function isValid(form, formInput) {
 }
 
 //Слушатель на все инпуты в форме
-
 function inputListener(form) {
   const formInputs = Array.from(form.querySelectorAll('.popup__form-input'));
   const button = form.querySelector('.popup__submite-button');
@@ -42,7 +41,6 @@ function inputListener(form) {
 }
 
 //Слушатель на формы
-
 export function formListener() {
   const forms = Array.from(document.querySelectorAll('.input-form'));
   forms.forEach(form => {
@@ -51,13 +49,14 @@ export function formListener() {
 }
 
 //проверка полей ввода на валидность до взаимодействия с инпутом
-
 function hasInvalid(formInputs) {
   return formInputs.some((input) => {
     return !input.validity.valid;
   })
 }
 
+
+//Состояние кнопки
 function buttonActive(inputs, button) {
   if (hasInvalid(inputs)) {
     button.disabled = true;;
@@ -68,4 +67,14 @@ function buttonActive(inputs, button) {
   }
 }
 
-formListener()
+// formListener()
+
+function enableValidation({
+  formSelector: '.input-form',
+  inputSelector: '.popup__input'
+  submitButtonSelector: '.popup__button';
+  inactiveButtonClass: 'popup__button_disabled';
+  inputErrorClass: 'popup__input_type_error';
+  errorClass: 'popup__error_visible'
+}) {}
+
