@@ -1,5 +1,5 @@
 .popup__preview-form {
-  display: flex; 
-  flex-direction: column; 
-  position: relative;
+  max-width: fit-content;
+  background-color: unset;
+  border-radius: 0;
 }

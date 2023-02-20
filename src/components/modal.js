@@ -1,11 +1,9 @@
 const profile = document.querySelector('.profile');
 const buttonEditeProfile = profile.querySelector('.profile__edite-button');
 const buttonAddCard = profile.querySelector('.profile__add-button');
-const popups = document.querySelectorAll('.popup');
 export const popupProfileName = document.querySelector('.popup__profile_name');
 export const popupProfileSubtitle = document.querySelector('.popup__profile_subtitle');
 export const popupEditeProfile = document.querySelector('.popup_edite-profile');
-import { formListener } from "./validate.js";
 import { profileName } from "./utils.js";
 import { profileSubtitle } from "./utils.js";
 import { popupCardAdd } from "./card.js";
@@ -14,9 +12,7 @@ import { popupCardAdd } from "./card.js";
 function editeProfileButtonClick() {
   popupProfileName.value = profileName.textContent;
   popupProfileSubtitle.value = profileSubtitle.textContent;
-  // formListener() // иначе не пройдет валидацию и сабмит будет активным
   openPopup(popupEditeProfile);
-
 }
 buttonEditeProfile.addEventListener('click', editeProfileButtonClick);
 
@@ -36,7 +32,7 @@ export function openPopup(popupElement) {
 
 // Функция закрытия попапа
 export function closePopup(popupElement) {
-  popupElement.classList.remove('popup_opened')
+  popupElement.classList.remove('popup_opened');
 }
 
 // Функция закрытия попапов "Крестиком"
