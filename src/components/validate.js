@@ -59,12 +59,25 @@ function enableValidation(popupFormElement) {
     })
   }
 
-  //проверка полей ввода на валидность до взаимодействия с инпутом
+  //проверка полей ввода на валидность
   function hasInvalid(formInputs) {
     return formInputs.some((input) => {
       return !input.validity.valid;
     })
   }
+
+  // function hasInvalid(formInputs) {
+  //   console.log(formInputs);
+  //   return formInputs.forEach(element => {
+  //     console.log(element);
+  //     element.some((input) => {
+  //     return !input.validity.valid;
+  //   }); 
+  //   })
+  // }
+
+
+
 
   //Состояние кнопки
   function buttonActive(inputs, button) {
@@ -78,7 +91,7 @@ function enableValidation(popupFormElement) {
   }
   formListener()
 };
-export {enableValidation, popupForm}
+export { enableValidation, popupForm }
 
 
 

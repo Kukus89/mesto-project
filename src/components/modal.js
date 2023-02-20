@@ -7,11 +7,14 @@ export const popupEditeProfile = document.querySelector('.popup_edite-profile');
 import { profileName } from "./utils.js";
 import { profileSubtitle } from "./utils.js";
 import { popupCardAdd } from "./card.js";
+import { enableValidation, popupForm } from "./validate.js";
+
+
+popupProfileName.value = profileName.textContent; 
+popupProfileSubtitle.value = profileSubtitle.textContent;
 
 // Открытие попапа профиля
 function editeProfileButtonClick() {
-  popupProfileName.value = profileName.textContent;
-  popupProfileSubtitle.value = profileSubtitle.textContent;
   openPopup(popupEditeProfile);
 }
 buttonEditeProfile.addEventListener('click', editeProfileButtonClick);
@@ -36,12 +39,11 @@ export function closePopup(popupElement) {
 }
 
 // Функция закрытия попапов "Крестиком"
-
 function closeByCross(popup) {
   const closeButton = popup.querySelector('.popup__close-button')
   closeButton.addEventListener('click', () => {
     closePopup(popup);
- })
+  })
 }
 
 //Закрытие попапа Искейпом
