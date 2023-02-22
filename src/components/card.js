@@ -37,12 +37,9 @@ function createCard(placeName, srcPic) {
 // добавление новой карточки
 function addNewCard(event) {
   event.preventDefault();
-  const button = event.target.querySelector('.popup__submite-button');
   cardsContainer.prepend(createCard(popupAreaName.value, imageSrc.value));
   closePopup(popupCardAdd);
   event.target.reset();
-  button.classList.add('popup__submite-button_disabled');
-  button.disabled = true;
 }
 
 formCardAdd.addEventListener('submit', addNewCard);

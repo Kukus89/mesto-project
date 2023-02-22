@@ -1,20 +1,21 @@
-const profile = document.querySelector('.profile'); formProfileEdite
+const profile = document.querySelector('.profile');
 const buttonEditeProfile = profile.querySelector('.profile__edite-button');
 const buttonAddCard = profile.querySelector('.profile__add-button');
 const profileName = document.querySelector('.profile__name');
 const profileSubtitle = document.querySelector('.profile__subtitle');
-const formProfileEdite = document.querySelector('.popup__container_editeProfile');
-const popups = document.querySelectorAll('.popup');
+const formProfileEdite = document.forms['profile-edite-form'];
 export const popupProfileName = document.querySelector('.popup__profile_name');
 export const popupProfileSubtitle = document.querySelector('.popup__profile_subtitle');
 export const popupEditeProfile = document.querySelector('.popup_edite-profile');
 import { popupCardAdd } from "./card.js";
+import { enableValidation, validationParams } from "./validate";
 
 // Открытие попапа профиля
 function openProfilePopup() {
   openPopup(popupEditeProfile);
   popupProfileName.value = profileName.textContent;
   popupProfileSubtitle.value = profileSubtitle.textContent;
+  enableValidation(validationParams); 
 }
 buttonEditeProfile.addEventListener('click', openProfilePopup);
 
