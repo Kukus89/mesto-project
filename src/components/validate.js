@@ -39,23 +39,23 @@ function enableValidation(popupFormElement) {
   }
 
   //Слушатель на все инпуты в форме
-  function inputListener(form) {
+  function listenImput(form) {
     const formInputs = Array.from(form.querySelectorAll(popupFormElement.inputSelector));
     const button = form.querySelector(popupFormElement.submitButtonSelector);
-    buttonActive(formInputs, button);
+    activateButton(formInputs, button);
     formInputs.forEach(formInput => {
       formInput.addEventListener('input', () => {
         isValid(form, formInput)
-        buttonActive(formInputs, button)
+        activateButton(formInputs, button)
       })
     });
   }
 
   //Слушатель на формы
-  function formListener() {
+  function listenForm() {
     const forms = Array.from(document.querySelectorAll(popupFormElement.formSelector));
     forms.forEach(form => {
-      inputListener(form)
+      listenImput(form)
     })
   }
 
@@ -66,21 +66,8 @@ function enableValidation(popupFormElement) {
     })
   }
 
-  // function hasInvalid(formInputs) {
-  //   console.log(formInputs);
-  //   return formInputs.forEach(element => {
-  //     console.log(element);
-  //     element.some((input) => {
-  //     return !input.validity.valid;
-  //   }); 
-  //   })
-  // }
-
-
-
-
   //Состояние кнопки
-  function buttonActive(inputs, button) {
+  function activateButton(inputs, button) {
     if (hasInvalid(inputs)) {
       button.disabled = true;;
       button.classList.add(popupFormElement.inactiveButtonClass);
@@ -89,7 +76,7 @@ function enableValidation(popupFormElement) {
       button.classList.remove(popupFormElement.inactiveButtonClass);
     }
   }
-  formListener()
+  listenForm()
 };
 export { enableValidation, popupForm }
 

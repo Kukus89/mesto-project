@@ -1,67 +1,65 @@
-const profile = document.querySelector('.profile');
+const profile = document.querySelector('.profile'); formProfileEdite
 const buttonEditeProfile = profile.querySelector('.profile__edite-button');
 const buttonAddCard = profile.querySelector('.profile__add-button');
+const profileName = document.querySelector('.profile__name');
+const profileSubtitle = document.querySelector('.profile__subtitle');
+const formProfileEdite = document.querySelector('.popup__container_editeProfile');
+const popups = document.querySelectorAll('.popup');
 export const popupProfileName = document.querySelector('.popup__profile_name');
 export const popupProfileSubtitle = document.querySelector('.popup__profile_subtitle');
 export const popupEditeProfile = document.querySelector('.popup_edite-profile');
-import { profileName } from "./utils.js";
-import { profileSubtitle } from "./utils.js";
 import { popupCardAdd } from "./card.js";
-import { enableValidation, popupForm } from "./validate.js";
-
-
-popupProfileName.value = profileName.textContent; 
-popupProfileSubtitle.value = profileSubtitle.textContent;
 
 // Открытие попапа профиля
-function editeProfileButtonClick() {
+function openProfilePopup() {
   openPopup(popupEditeProfile);
+  popupProfileName.value = profileName.textContent;
+  popupProfileSubtitle.value = profileSubtitle.textContent;
 }
-buttonEditeProfile.addEventListener('click', editeProfileButtonClick);
+buttonEditeProfile.addEventListener('click', openProfilePopup);
 
 // Попап формы добавления карточки
-function addCardButtonClick() {
+function openCardPopup() {
   openPopup(popupCardAdd);
 }
-buttonAddCard.addEventListener('click', addCardButtonClick);
+buttonAddCard.addEventListener('click', openCardPopup);
 
 // Функция открытия попапа
 export function openPopup(popupElement) {
-  popupElement.classList.add('popup_opened')
-  closeByKey(popupElement);
-  closeByClickBehind(popupElement);
-  closeByCross(popupElement)
+  popupElement.classList.add('popup_opened');
+  document.addEventListener('keydown', closeByEscape);
+  document.addEventListener('click', closeByEscape);
 }
 
 // Функция закрытия попапа
 export function closePopup(popupElement) {
   popupElement.classList.remove('popup_opened');
+  document.removeEventListener('keydown', closeByEscape);
+  document.removeEventListener('click', closeByEscape);
 }
 
-// Функция закрытия попапов "Крестиком"
-function closeByCross(popup) {
-  const closeButton = popup.querySelector('.popup__close-button')
-  closeButton.addEventListener('click', () => {
-    closePopup(popup);
-  })
+//Закрытие попапов
+function closeByEscape(evt) {
+  const openedPopup = document.querySelector('.popup_opened');
+  if ((openedPopup !== null) && (evt.key === 'Escape')) {
+    closePopup(openedPopup);
+  }
+  if (evt.target.classList.contains('popup_opened')) {
+    closePopup(openedPopup)
+  }
+  if (evt.target.classList.contains('popup__close-button')) {
+    closePopup(openedPopup)
+  }
+  else return
 }
 
-//Закрытие попапа Искейпом
-function closeByKey(popup) {
-  document.addEventListener('keydown', (e) => {
-    if (e.key == 'Escape') {
-      closePopup(popup)
-    }
-  })
+// Сохранение профиля
+function handleSubmitEditProfileForm(event) {
+  event.preventDefault();
+  profileName.textContent = popupProfileName.value;
+  profileSubtitle.textContent = popupProfileSubtitle.value;
+  closePopup(popupEditeProfile);
 }
-//Закрытие попапа кликом вне
-function closeByClickBehind(element) {
-  element.addEventListener('click', (e) => {
-    const targetForm = element.querySelector('.popup__form')
-    const shadowClick = e.composedPath().includes(targetForm);
-    if (!shadowClick) {
-      closePopup(element)
-    }
-  })
-}
+
+formProfileEdite.addEventListener('submit', handleSubmitEditProfileForm);
 
