@@ -41,24 +41,27 @@ function enableValidation(validationSetting) {
   }
 
   //Слушатель на все инпуты в форме
-  function listenImput(form) {
+  function listenInputs(form) {
     const formInputs = Array.from(form.querySelectorAll(validationSetting.inputSelector));
     const button = form.querySelector(validationSetting.submitButtonSelector);
-    showButton(formInputs, button);
+     toggleButtonState (formInputs, button);
+    form.addEventListener('reset', () => {
+      setTimeout(() => {
+        toggleButtonState (formInputs, button);
+      }, 0);
+    });
     formInputs.forEach(formInput => {
       formInput.addEventListener('input', () => {
         isValid(form, formInput)
-        showButton(formInputs, button)
+        toggleButtonState (formInputs, button)
       })
     });
   }
 
   //Слушатель на формы
-  function listenForm() {
+  function listenForms() {
     const forms = Array.from(document.querySelectorAll(validationSetting.formSelector));
-    forms.forEach(form => {
-      listenImput(form)
-    })
+    forms.forEach(listenInputs)
   }
 
   //проверка полей ввода на валидность
@@ -69,7 +72,7 @@ function enableValidation(validationSetting) {
   }
 
   //Состояние кнопки
-  function showButton(inputs, button) {
+  function toggleButtonState (inputs, button) {
     if (hasInvalid(inputs)) {
       button.disabled = true;;
       button.classList.add(validationSetting.inactiveButtonClass);
@@ -78,14 +81,6 @@ function enableValidation(validationSetting) {
       button.classList.remove(validationSetting.inactiveButtonClass);
     }
   }
-
-  // слушатель на сброс кнопки
-  document.addEventListener('reset', (evt) => {
-    setTimeout(() => {
-      const activeButton = evt.target.querySelector('.popup__submite-button');
-      activeButton.disabled = true;
-      activeButton.classList.add('popup__submite-button_disabled');
-    }, 0);
-  });
-  listenForm()
+  listenForms()
 };
+

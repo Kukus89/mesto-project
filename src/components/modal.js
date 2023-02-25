@@ -4,18 +4,17 @@ const buttonAddCard = profile.querySelector('.profile__add-button');
 const profileName = document.querySelector('.profile__name');
 const profileSubtitle = document.querySelector('.profile__subtitle');
 const formProfileEdite = document.forms['profile-edite-form'];
+const popups = document.querySelectorAll('.popup')
 export const popupProfileName = document.querySelector('.popup__profile_name');
 export const popupProfileSubtitle = document.querySelector('.popup__profile_subtitle');
 export const popupEditeProfile = document.querySelector('.popup_edite-profile');
 import { popupCardAdd } from "./card.js";
-import { enableValidation, validationParams } from "./validate";
 
 // Открытие попапа профиля
 function openProfilePopup() {
   openPopup(popupEditeProfile);
   popupProfileName.value = profileName.textContent;
   popupProfileSubtitle.value = profileSubtitle.textContent;
-  enableValidation(validationParams); 
 }
 buttonEditeProfile.addEventListener('click', openProfilePopup);
 
@@ -28,31 +27,34 @@ buttonAddCard.addEventListener('click', openCardPopup);
 // Функция открытия попапа
 export function openPopup(popupElement) {
   popupElement.classList.add('popup_opened');
-  document.addEventListener('keydown', closeByEscape);
-  document.addEventListener('click', closeByEscape);
+  document.addEventListener('keydown', closeByEscape); //
 }
 
 // Функция закрытия попапа
 export function closePopup(popupElement) {
   popupElement.classList.remove('popup_opened');
   document.removeEventListener('keydown', closeByEscape);
-  document.removeEventListener('click', closeByEscape);
 }
 
 //Закрытие попапов
 function closeByEscape(evt) {
-  const openedPopup = document.querySelector('.popup_opened');
-  if ((openedPopup !== null) && (evt.key === 'Escape')) {
+  if (evt.key === 'Escape') {
+    const openedPopup = document.querySelector('.popup_opened');
     closePopup(openedPopup);
-  }
-  if (evt.target.classList.contains('popup_opened')) {
-    closePopup(openedPopup)
-  }
-  if (evt.target.classList.contains('popup__close-button')) {
-    closePopup(openedPopup)
   }
   else return
 }
+
+popups.forEach((popup) => {
+    popup.addEventListener('mousedown', (evt) => {
+        if (evt.target.classList.contains('popup_opened')) {
+            closePopup(popup)
+        }
+        if (evt.target.classList.contains('popup__close-button')) {
+          closePopup(popup)
+        }
+    })
+})
 
 // Сохранение профиля
 function handleSubmitEditProfileForm(event) {
