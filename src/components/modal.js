@@ -1,8 +1,8 @@
 const profile = document.querySelector('.profile');
 const buttonEditeProfile = profile.querySelector('.profile__edite-button');
 const buttonAddCard = profile.querySelector('.profile__add-button');
-const profileName = document.querySelector('.profile__name');
-const profileSubtitle = document.querySelector('.profile__subtitle');
+export const profileName = document.querySelector('.profile__name');
+export const profileSubtitle = document.querySelector('.profile__subtitle');
 const formProfileEdite = document.forms['profile-edite-form'];
 const popups = document.querySelectorAll('.popup')
 export const popupProfileName = document.querySelector('.popup__profile_name');
@@ -46,14 +46,14 @@ function closeByEscape(evt) {
 }
 
 popups.forEach((popup) => {
-    popup.addEventListener('mousedown', (evt) => {
-        if (evt.target.classList.contains('popup_opened')) {
-            closePopup(popup)
-        }
-        if (evt.target.classList.contains('popup__close-button')) {
-          closePopup(popup)
-        }
-    })
+  popup.addEventListener('mousedown', (evt) => {
+    if (evt.target.classList.contains('popup_opened')) {
+      closePopup(popup)
+    }
+    if (evt.target.classList.contains('popup__close-button')) {
+      closePopup(popup)
+    }
+  })
 })
 
 // Сохранение профиля
