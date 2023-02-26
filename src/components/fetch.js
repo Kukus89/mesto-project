@@ -1,7 +1,9 @@
-import { popupProfileName, popupProfileSubtitle } from "./modal";
-document.querySelector('.profile__avatar')
+import { profileName, profileSubtitle } from "./modal";
+import { createCard } from "./card";
+import { cardsContainer } from "./card";
+const profileAvatar = document.querySelector('.profile__avatar')
 
-function cards() {
+function initialCards() {
   return fetch('https://nomoreparties.co/v1/plus-cohort-21/cards', {
     headers: {
       authorization: 'db2903a8-7d87-407f-a3ab-4cc55fb57270'
@@ -9,11 +11,15 @@ function cards() {
   })
     .then(res => res.json())
     .then((result) => {
-      console.log(result);
+      result.forEach(element => {
+        cardsContainer.prepend(createCard(element.name, element.link))
+      });
     })
 }
 
-function authorization() {
+initialCards()
+
+function editeProfile() {
   return fetch('https://nomoreparties.co/v1/plus-cohort-21/users/me', {
     headers: {
       authorization: 'db2903a8-7d87-407f-a3ab-4cc55fb57270'
@@ -27,13 +33,13 @@ function authorization() {
     })
     .then((result) => {
       // console.log(result);
-      document.querySelector('.profile__name').textContent = result.name;
-      document.querySelector('.profile__subtitle').textContent = result.about;
-      document.querySelector('.profile__avatar').src = result.avatar;
+      profileName.textContent = result.name;
+      profileSubtitle.textContent = result.about;
+      profileAvatar.src = result.avatar;
     })
     .catch((err) => {
       console.log(`Ошибка: ${err}`)
     })
 }
 
-authorization()
+editeProfile()

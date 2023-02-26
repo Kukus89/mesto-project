@@ -1,5 +1,4 @@
 import { openPopup, closePopup } from "./modal.js";
-import { initialCards } from "./defaultCards";
 const popupAreaName = document.querySelector('.popup__area-name');
 const imageSrc = document.querySelector('.popup__src-image');
 const formCardAdd = document.querySelector('.popup__container_newCardAdd');
@@ -7,11 +6,11 @@ const newCardTemplate = document.querySelector('.templateElements').content;
 const popupPreview = document.querySelector('.popup_preview');
 const popupPreviewImage = document.querySelector('.popup__preview-image');
 const imageSubtitle = document.querySelector('.popup__preview-image-subtitle');
-const cardsContainer = document.querySelector('.elements__list');
+export const cardsContainer = document.querySelector('.elements__list');
 export const popupCardAdd = document.querySelector('.popup_card-add');
 
 // форма готовой карточки
-function createCard(placeName, srcPic) {
+export function createCard(placeName, srcPic) {
   const element = newCardTemplate.querySelector('.element').cloneNode(true);
   const elementImage = element.querySelector('.element__image');
   const elementLike = element.querySelector('.element__like');
@@ -44,7 +43,3 @@ function addNewCard(event) {
 
 formCardAdd.addEventListener('submit', addNewCard);
 
-// Шесть карточек «из коробки»
-initialCards.forEach(element => {
-  cardsContainer.prepend(createCard(element.name, element.link));
-});
