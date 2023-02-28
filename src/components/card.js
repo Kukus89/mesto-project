@@ -1,7 +1,7 @@
 import { openPopup, closePopup } from "./modal.js";
 import { postNewCard } from "./fetch.js";
 import { profileName } from "./modal";
-import { deleteCard } from "./fetch.js";
+import { deleteCard, addLike, deleteLike } from "./fetch.js";
 const popupAreaName = document.querySelector('.popup__area-name');
 const imageSrc = document.querySelector('.popup__src-image');
 const formCardAdd = document.querySelector('.popup__container_newCardAdd');
@@ -10,6 +10,7 @@ const popupPreview = document.querySelector('.popup_preview');
 const popupPreviewImage = document.querySelector('.popup__preview-image');
 const imageSubtitle = document.querySelector('.popup__preview-image-subtitle');
 const popupConfirmDelete = document.querySelector('.popup_confirm-delete');
+const confirmDeleteButton = document.querySelector('.popup__submite-button_confirm-delete')
 export const cardsContainer = document.querySelector('.elements__list');
 export const popupCardAdd = document.querySelector('.popup_card-add');
 
@@ -27,15 +28,42 @@ export function createCard(newCardObject) {
   elementImage.alt = `Здесь должна быть фотография "${newCardObject.name}"`;
   elementLikeQquantity.textContent = newCardObject.likes.length;
   element.querySelector('.element__title').textContent = newCardObject.name;
+
   elementDelete.addEventListener('click', () => {
-    // openPopup(popupConfirmDelete);
-    // console.log(newCardId);
-    deleteCard(newCardId)
-    // elementDelete.closest('.element').remove();///
+    openPopup(popupConfirmDelete)
+    if (popupConfirmDelete.classList.contains('popup_opened')) {
+      confirmDeleteButton.addEventListener('click', () => {
+        deleteCard(newCardObject._id, element)
+        elementDelete.closest('.element').remove()
+        closePopup(popupConfirmDelete)
+      })
+    }
   })
+
+  newCardObject.likes.forEach(element => {
+    if (element._id == '962d657b2afc25af033ca0a3') {
+      elementLike.classList.toggle('element__like_active');
+    }
+  })
+
+  // console.log(newCardObject.likes);
   elementLike.addEventListener('click', () => {
-    elementLike.classList.toggle('element__like_active')
-  })
+    if (!elementLike.classList.contains('element__like_active')) {
+      addLike(newCardObject._id)
+        .then((res) => {
+          elementLike.classList.toggle('element__like_active');
+          elementLikeQquantity.textContent = res.likes.length;
+          // console.log(res);
+        })
+    } else {
+      deleteLike(newCardObject._id)
+      .then((res) => {
+        elementLike.classList.toggle('element__like_active');
+        elementLikeQquantity.textContent = res.likes.length;
+    })
+  }
+})
+
   elementImage.addEventListener('click', () => {
     popupPreviewImage.alt = `Здесь должна быть фотография "${newCardObject.name}"`;
     popupPreviewImage.src = newCardObject.link;

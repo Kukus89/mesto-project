@@ -86,22 +86,58 @@ export function postNewCard(newCardName, newCardUrl) {
       return Promise.reject(res.status)
     })
     .then((obj) => {
-      console.log(obj._id);
+      // console.log(obj._id);
       const newCardObject = obj
-      createCard(newCardObject)
       cardsContainer.prepend((createCard(newCardObject)))
     })
-  // cardsContainer.prepend(createCard(newCardName, newCardUrl));
 }
 
 //Удаление Карточки
 export function deleteCard(cardId) {
-  fetch(`https://nomoreparties.co/v1/plus-cohort-21/${cardId}`, {
-    method: 'DELETE'
+  fetch(`https://nomoreparties.co/v1/plus-cohort-21/cards/${cardId}`, {
+    method: 'DELETE',
+    headers: {
+      authorization: 'db2903a8-7d87-407f-a3ab-4cc55fb57270',
+      'Content-Type': 'application/json'
+    },
   })
     .then((res) => {
       if (res.ok) {
-        console.log(res.ok);
+        // console.log(res.ok);
+        return res.json()
+      }
+      return Promise.reject(res.status)
+    })
+}
+
+//добавить лайк 
+export function addLike(cardId) {
+  return fetch(`https://nomoreparties.co/v1/plus-cohort-21/cards/likes/${cardId}`, {
+    method: 'PUT',
+    headers: {
+      authorization: 'db2903a8-7d87-407f-a3ab-4cc55fb57270',
+      'Content-Type': 'application/json'
+    },
+  })
+    .then((res) => {
+      if (res.ok) {
+        return res.json()
+      }
+      return Promise.reject(res.status)
+    })
+}
+
+//удалить лайк 
+export function deleteLike(cardId) {
+  return fetch(`https://nomoreparties.co/v1/plus-cohort-21/cards/likes/${cardId}`, {
+    method: 'DELETE',
+    headers: {
+      authorization: 'db2903a8-7d87-407f-a3ab-4cc55fb57270',
+      'Content-Type': 'application/json'
+    },
+  })
+    .then((res) => {
+      if (res.ok) {
         return res.json()
       }
       return Promise.reject(res.status)
