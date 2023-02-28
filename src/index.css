@@ -39,3 +39,6 @@
 @import url(./blocks/popup/__input-error-message/popup__input-error-message.css);
 @import url(./blocks/popup/__input-error-message/_active/popup__input-error-message_active.css);
 @import url(./blocks/popup/__submite-button/_disabled/popup__submite-button_disabled.css);
+@import url(./blocks/element/__like-quantity/element__like-quantity.css);
+@import url(./blocks/popup/__title/_confirm-delete/popup__title_confirm-delete.css);
+@import url(./blocks/popup/__submite-button/_confirm-delete/popup__submite-button_confirm-delete.css);

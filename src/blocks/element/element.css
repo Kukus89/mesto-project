@@ -3,7 +3,7 @@
   min-width: 282px;
   background-color: #FFFFFF;
   display: grid;
-  grid-template-columns: 100%;
+  grid-template-columns: auto 62px;
   grid-template-rows: 282px 79px;
   border-radius: 10px;
   overflow: hidden;

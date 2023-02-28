@@ -3,23 +3,8 @@ import { createCard } from "./card";
 import { cardsContainer } from "./card";
 const profileAvatar = document.querySelector('.profile__avatar')
 
-function initialCards() {
-  return fetch('https://nomoreparties.co/v1/plus-cohort-21/cards', {
-    headers: {
-      authorization: 'db2903a8-7d87-407f-a3ab-4cc55fb57270'
-    }
-  })
-    .then(res => res.json())
-    .then((result) => {
-      result.forEach(element => {
-        cardsContainer.prepend(createCard(element.name, element.link))
-      });
-    })
-}
-
-initialCards()
-
-function editeProfile() {
+//загрузка нформации профиля
+export function getProfile() {
   return fetch('https://nomoreparties.co/v1/plus-cohort-21/users/me', {
     headers: {
       authorization: 'db2903a8-7d87-407f-a3ab-4cc55fb57270'
@@ -32,7 +17,6 @@ function editeProfile() {
       return Promise.reject(res.status)
     })
     .then((result) => {
-      // console.log(result);
       profileName.textContent = result.name;
       profileSubtitle.textContent = result.about;
       profileAvatar.src = result.avatar;
@@ -42,4 +26,84 @@ function editeProfile() {
     })
 }
 
-editeProfile()
+getProfile()
+
+//Загрузка карточек с сервера
+export function initialCards() {
+  return fetch('https://nomoreparties.co/v1/plus-cohort-21/cards', {
+    headers: {
+      authorization: 'db2903a8-7d87-407f-a3ab-4cc55fb57270'
+    }
+  })
+    .then((res) => {
+      if (res.ok) {
+        return res.json()
+      }
+      return Promise.reject(res.status)
+    })
+    .then((result) => {
+      result.forEach(element => {
+        // console.log(element);
+        cardsContainer.prepend(createCard(element))
+      });
+    })
+}
+
+initialCards()
+
+
+export function patchProfile(editeProfileName, editeProfileAbout) {
+  fetch('https://nomoreparties.co/v1/plus-cohort-21/users/me', {
+    method: 'PATCH',
+    headers: {
+      authorization: 'db2903a8-7d87-407f-a3ab-4cc55fb57270',
+      'Content-Type': 'application/json'
+    },
+    body: JSON.stringify({
+      name: editeProfileName,
+      about: editeProfileAbout
+    })
+  });
+}
+
+//Отправка новой карточки на сервер
+export function postNewCard(newCardName, newCardUrl) {
+  fetch('https://nomoreparties.co/v1/plus-cohort-21/cards', {
+    method: 'POST',
+    headers: {
+      authorization: 'db2903a8-7d87-407f-a3ab-4cc55fb57270',
+      'Content-Type': 'application/json'
+    },
+    body: JSON.stringify({
+      name: newCardName,
+      link: newCardUrl
+    })
+  })
+    .then((res) => {
+      if (res.ok) {
+        return res.json()
+      }
+      return Promise.reject(res.status)
+    })
+    .then((obj) => {
+      console.log(obj._id);
+      const newCardObject = obj
+      createCard(newCardObject)
+      cardsContainer.prepend((createCard(newCardObject)))
+    })
+  // cardsContainer.prepend(createCard(newCardName, newCardUrl));
+}
+
+//Удаление Карточки
+export function deleteCard(cardId) {
+  fetch(`https://nomoreparties.co/v1/plus-cohort-21/${cardId}`, {
+    method: 'DELETE'
+  })
+    .then((res) => {
+      if (res.ok) {
+        console.log(res.ok);
+        return res.json()
+      }
+      return Promise.reject(res.status)
+    })
+}

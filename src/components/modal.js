@@ -9,6 +9,8 @@ export const popupProfileName = document.querySelector('.popup__profile_name');
 export const popupProfileSubtitle = document.querySelector('.popup__profile_subtitle');
 export const popupEditeProfile = document.querySelector('.popup_edite-profile');
 import { popupCardAdd } from "./card.js";
+import { patchProfile } from "./fetch.js";
+import { getProfile } from "./fetch.js";
 
 // Открытие попапа профиля
 function openProfilePopup() {
@@ -59,8 +61,8 @@ popups.forEach((popup) => {
 // Сохранение профиля
 function handleSubmitEditProfileForm(event) {
   event.preventDefault();
-  profileName.textContent = popupProfileName.value;
-  profileSubtitle.textContent = popupProfileSubtitle.value;
+  patchProfile(popupProfileName.value, popupProfileSubtitle.value)
+  getProfile()
   closePopup(popupEditeProfile);
 }
 

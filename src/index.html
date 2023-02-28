@@ -15,7 +15,7 @@
     </header>
     <main>
       <section class="profile">
-        <img class="profile__avatar" src="" alt="Фото профиля" > 
+        <img class="profile__avatar" src="" alt="Фото профиля">
         <div class="profile__info">
           <h1 class="profile__name"></h1>
           <p class="profile__subtitle"></p>
@@ -40,20 +40,13 @@
         <form class="input-form" name="profile-edite-form" novalidate>
           <fieldset class="popup__input-container">
             <input id='name-input' class="popup__profile_name popup__form-input" name="profile_name" placeholder="Имя"
-              type="text" required 
-              minlength="2" 
-              maxlength="40" 
-              pattern="^[a-zA-Z0-9\wа-яА-Я\-\u{0020}]+$"
-              data-error-message="поле может содержать только латинские буквы, кириллические буквы, знаки дефиса и пробелы"
-              ></input>
+              type="text" required minlength="2" maxlength="40" pattern="^[a-zA-Z0-9\wа-яА-Я\-\u{0020}]+$"
+              data-error-message="поле может содержать только латинские буквы, кириллические буквы, знаки дефиса и пробелы"></input>
             <span class="popup__input-error-message name-input-error"></span>
             <input id='subtitle-input' class="popup__profile_subtitle popup__form-input" name="profile_subtitle"
-              placeholder="Профессия" type="text" required 
-              minlength="2" 
-              maxlength="200" 
+              placeholder="Профессия" type="text" required minlength="2" maxlength="200"
               pattern="^[a-zA-Z0-9\wа-яА-Я\-\u{0020}]+$"
-              data-error-message="поле может содержать только латинские буквы, кириллические буквы, знаки дефиса и пробелы"
-            ></input>
+              data-error-message="поле может содержать только латинские буквы, кириллические буквы, знаки дефиса и пробелы"></input>
             <span class="popup__input-error-message subtitle-input-error"></span>
             <button class="popup__submite-button popup__submite-button_profile-save" name="submit" type="submit"
               value="Сохранить">Сохранить</button>
@@ -68,19 +61,13 @@
         <form class="input-form" name="newCardForm" novalidate>
           <fieldset class="popup__input-container">
             <input id="area-name" class="popup__area-name popup__form-input" name="profile_name" placeholder="Название"
-              type="text" required 
-              minlength="2" 
-              maxlength="30"
-              pattern="^[a-zA-Z0-9\wа-яА-Я\-\u{0020}]+$"
-              data-error-message="поле может содержать только латинские буквы, кириллические буквы, знаки дефиса и пробелы"
-              ></input>
+              type="text" required minlength="2" maxlength="30" pattern="^[a-zA-Z0-9\wа-яА-Я\-\u{0020}]+$"
+              data-error-message="поле может содержать только латинские буквы, кириллические буквы, знаки дефиса и пробелы"></input>
             <span class="popup__input-error-message area-name-error"></span>
             <input id="src-image" required class="popup__src-image popup__form-input" name="profile_subtitle"
-              placeholder="Ссылка на картинку" type="url" required 
-              ></input>
+              placeholder="Ссылка на картинку" type="url" required></input>
             <span class="popup__input-error-message src-image-error"></span>
-            <button class="popup__submite-button" name="saveCard" type="submit"
-              value="Сохранить">Сохранить</button>
+            <button class="popup__submite-button" name="saveCard" type="submit" value="Сохранить">Сохранить</button>
           </fieldset>
         </form>
       </div>
@@ -92,6 +79,14 @@
         <h3 class="popup__preview-image-subtitle"></h3>
       </div>
     </div>
+    <div class="popup popup_confirm-delete">
+      <div class="popup__container">
+        <button class="popup__close-button" type="button" title="Создать"></button>
+        <h2 class="popup__title popup__title_confirm-delete">Вы уверенны?</h2>
+        <button class="popup__submite-button popup__submite-button_confirm-delete" name="saveCard" type="submit"
+          value="Сохранить">Да</button>
+      </div>
+    </div>
   </div>
 
   <template class="templateElements">
@@ -99,6 +94,7 @@
       <img src="" class="element__image" alt="Фото в карточках">
       <h2 class="element__title"></h2>
       <button type="button" title="Понравилось" class="element__like"></button>
+      <h3 class="element__like-quantity"></h3>
       <button type="button" title="Удалить" class="element__delete-button"> </button>
     </li>
   </template>

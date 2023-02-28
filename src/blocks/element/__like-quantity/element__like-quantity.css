@@ -1,0 +1,11 @@
+.element__like-quantity {
+  color: black;
+  grid-column: 2/3;
+  grid-row: 2/3;
+  font-size: 13px;
+  line-height: 16px;
+  font-weight: 400;
+  margin: 44px 0 0 0;
+  justify-self: center;
+  min-width:min-content;
+}
