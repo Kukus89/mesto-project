@@ -1,7 +1,7 @@
 import { profileName, profileSubtitle } from "./modal";
 import { createCard } from "./card";
 import { cardsContainer } from "./card";
-const profileAvatar = document.querySelector('.profile__avatar')
+export const profileAvatar = document.querySelector('.profile__avatar')
 
 //загрузка нформации профиля
 export function getProfile() {
@@ -135,6 +135,26 @@ export function deleteLike(cardId) {
       authorization: 'db2903a8-7d87-407f-a3ab-4cc55fb57270',
       'Content-Type': 'application/json'
     },
+  })
+    .then((res) => {
+      if (res.ok) {
+        return res.json()
+      }
+      return Promise.reject(res.status)
+    })
+}
+
+//Обновление авы
+export function changeAvatar(AvatarURL) {
+  return fetch(`https://nomoreparties.co/v1/plus-cohort-21/users/me/avatar`, {
+    method: 'PATCH',
+    headers: {
+      authorization: 'db2903a8-7d87-407f-a3ab-4cc55fb57270',
+      'Content-Type': 'application/json'
+    },
+    body: JSON.stringify({
+      avatar: AvatarURL
+    })
   })
     .then((res) => {
       if (res.ok) {

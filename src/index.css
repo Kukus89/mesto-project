@@ -43,3 +43,5 @@
 @import url(./blocks/popup/__title/_confirm-delete/popup__title_confirm-delete.css);
 @import url(./blocks/popup/__submite-button/_confirm-delete/popup__submite-button_confirm-delete.css);
 @import url(./blocks/profile/__edite-overlay/profile__edite-overlay.css);
+@import url(./blocks/popup/__submite-button/_edite-avatar/popup__submite-button_edite-avatar.css);
+@import url(./blocks/popup/__title/_edite-avatar/popup__title_edite-avatar.css);

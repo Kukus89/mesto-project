@@ -17,7 +17,6 @@
       <section class="profile">
         <div class="profile__edite-overlay">
           <img class="profile__avatar" src="" alt="Фото профиля">
-          <img class="profile__edite-icon" src="<%=require('./images/edite.png')%>" alt="">
         </div>
         <div class="profile__info">
           <h1 class="profile__name"></h1>
@@ -88,6 +87,22 @@
         <h2 class="popup__title popup__title_confirm-delete">Вы уверенны?</h2>
         <button class="popup__submite-button popup__submite-button_confirm-delete" name="saveCard" type="submit"
           value="Сохранить">Да</button>
+      </div>
+    </div>
+    <div class="popup popup_edite-avatar">
+      <div class="popup__container">
+        <button class="popup__close-button" type="button" title="Создать"></button>
+        <h2 class="popup__title popup__title_edite-avatar">Обновить автар</h2>
+        <form class="input-form" name="editeAvatarForm" novalidate>
+          <fieldset class="popup__input-container">
+            <input id="avarat-src" class="popup__form-input" name="avatar-src" placeholder="Введите ссылку" type="url"
+              required
+              data-error-message="поле может содержать только латинские буквы, кириллические буквы, знаки дефиса и пробелы"></input>
+            <span class="popup__input-error-message avarat-src-error"></span>
+            <button class="popup__submite-button popup__submite-button_edite-avatar" name="editeAvatar" type="submit"
+              value="">Сохранить</button>
+          </fieldset>
+        </form>
       </div>
     </div>
   </div>

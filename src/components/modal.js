@@ -1,6 +1,8 @@
 const profile = document.querySelector('.profile');
 const buttonEditeProfile = profile.querySelector('.profile__edite-button');
 const buttonAddCard = profile.querySelector('.profile__add-button');
+const avatarEditeButton = document.querySelector('.profile__edite-overlay')
+const popupAvatarEdite = document.querySelector('.popup_edite-avatar')
 export const profileName = document.querySelector('.profile__name');
 export const profileSubtitle = document.querySelector('.profile__subtitle');
 const formProfileEdite = document.forms['profile-edite-form'];
@@ -9,8 +11,7 @@ export const popupProfileName = document.querySelector('.popup__profile_name');
 export const popupProfileSubtitle = document.querySelector('.popup__profile_subtitle');
 export const popupEditeProfile = document.querySelector('.popup_edite-profile');
 import { popupCardAdd } from "./card.js";
-import { patchProfile } from "./fetch.js";
-import { getProfile } from "./fetch.js";
+import { patchProfile, changeAvatar, getProfile } from "./fetch.js";
 
 // Открытие попапа профиля
 function openProfilePopup() {
@@ -68,3 +69,26 @@ function handleSubmitEditProfileForm(event) {
 
 formProfileEdite.addEventListener('submit', handleSubmitEditProfileForm);
 
+//открыть попап изменения авы
+avatarEditeButton.addEventListener('click', () => {
+  openPopup(popupAvatarEdite)
+  const popupEditeAvatar = document.querySelector('.popup_edite-avatar');
+  const popupSubmiteButtonEditeAvatar = popupEditeAvatar.querySelector('.popup__submite-button_edite-avatar');
+  const inputEditeAvatarURL = popupEditeAvatar.querySelector('.popup__form-input');
+  popupSubmiteButtonEditeAvatar.addEventListener('click', (evt) => {
+    evt.preventDefault();
+    showLoadingMessage(true, popupSubmiteButtonEditeAvatar)
+    changeAvatar(inputEditeAvatarURL.value)
+    // getProfile()
+    closePopup(popupAvatarEdite)
+  })
+})
+
+function showLoadingMessage(isLoading, element) {
+  if (isLoading) {
+    element.textContent = 'Сохранение'
+  }
+  else {
+
+  }
+}
