@@ -35,7 +35,7 @@ export function createCard(newCardObject) {
         deleteCard(newCardObject._id, element);
         confirmDeleteButton.textContent = 'Удаление'
         elementDelete.closest('.element').remove();
-      })
+      }, {once:true})
     }
   })
 

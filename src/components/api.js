@@ -1,6 +1,5 @@
-import { profileName, profileSubtitle, closePopup, popupEditeAvatar, popupSubmiteButtonEditeAvatar } from "./modal";
-import { createCard, confirmDeleteButton, submiteButtonCardAdd } from "./card";
-import { cardsContainer } from "./card";
+import { profileName, profileSubtitle, closePopup, popupEditeAvatar, popupSubmiteButtonEditeAvatar } from "./modal.js";
+import { createCard, confirmDeleteButton, submiteButtonCardAdd, cardsContainer } from "./card.js";
 export const profileAvatar = document.querySelector('.profile__avatar');
 const submiteButtonProfileSave = document.querySelector('.popup__submite-button_profile-save');
 
@@ -53,6 +52,9 @@ export const initialCards = () => {
         cardsContainer.prepend(createCard(element))
       });
     })
+    .catch((err) => {
+      console.log(`Ошибка: ${err}`)
+    })
 }
 
 initialCards()
@@ -75,6 +77,9 @@ export const patchProfile = (editeProfileName, editeProfileAbout) => {
     .then(() => {
       closePopup(submiteButtonProfileSave.closest('.popup'))
       submiteButtonProfileSave.textContent = 'Сохранить'
+    })
+    .catch((err) => {
+      console.log(`Ошибка: ${err}`)
     })
 }
 
@@ -124,6 +129,9 @@ export const deleteCard = (cardId) => {
       closePopup(confirmDeleteButton.closest('.popup'))
       confirmDeleteButton.textContent = 'Да';
     })
+    .catch((err) => {
+      console.log(`Ошибка: ${err}`)
+    })
 }
 
 //добавить лайк 
@@ -138,6 +146,9 @@ export const addLike = (cardId) => {
       }
       return Promise.reject(res.status)
     })
+    .catch((err) => {
+      console.log(`Ошибка: ${err}`)
+    })
 }
 
 //удалить лайк 
@@ -151,6 +162,9 @@ export const deleteLike = (cardId) => {
         return res.json()
       }
       return Promise.reject(res.status)
+    })
+    .catch((err) => {
+      console.log(`Ошибка: ${err}`)
     })
 }
 
@@ -172,5 +186,8 @@ export const changeAvatar = (AvatarURL) => {
     .then(() => {
       closePopup(popupEditeAvatar)
       popupSubmiteButtonEditeAvatar.textContent = 'Сохранить'
+    })
+    .catch((err) => {
+      console.log(`Ошибка: ${err}`)
     })
 }
