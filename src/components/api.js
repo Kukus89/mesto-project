@@ -184,6 +184,9 @@ export const changeAvatar = (AvatarURL) => {
       return Promise.reject(res.status)
     })
     .then(() => {
+      getProfile()
+    })
+    .then(() => {
       closePopup(popupEditeAvatar)
       popupSubmiteButtonEditeAvatar.textContent = 'Сохранить'
     })

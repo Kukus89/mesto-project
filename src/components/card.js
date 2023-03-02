@@ -18,10 +18,10 @@ export function createCard(newCardObject) {
   const element = newCardTemplate.querySelector('.element').cloneNode(true);
   const elementImage = element.querySelector('.element__image');
   const elementLike = element.querySelector('.element__like');
-  const elementDelete = element.querySelector('.element__delete-button')
-  const elementLikeQquantity = element.querySelector('.element__like-quantity')
+  const elementDelete = element.querySelector('.element__delete-button');
+  const elementLikeQquantity = element.querySelector('.element__like-quantity');
   if (newCardObject.owner.name !== profileName.textContent) {
-    elementDelete.remove()
+    elementDelete.remove();
   }
   elementImage.src = newCardObject.link;
   elementImage.alt = `Здесь должна быть фотография "${newCardObject.name}"`;
@@ -33,7 +33,7 @@ export function createCard(newCardObject) {
     if (popupConfirmDelete.classList.contains('popup_opened')) {
       confirmDeleteButton.addEventListener('click', () => {
         deleteCard(newCardObject._id, element);
-        confirmDeleteButton.textContent = 'Удаление'
+        confirmDeleteButton.textContent = 'Удаление';
         elementDelete.closest('.element').remove();
       }, {once:true})
     }
@@ -75,8 +75,8 @@ export function createCard(newCardObject) {
 // добавление новой карточки
 export function addNewCard(event) {
   event.preventDefault();
-  submiteButtonCardAdd.textContent = 'Сохранение'
-  postNewCard(popupAreaName.value, imageSrc.value)
+  submiteButtonCardAdd.textContent = 'Сохранение';
+  postNewCard(popupAreaName.value, imageSrc.value);
   event.target.reset();
 }
 

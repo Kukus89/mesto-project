@@ -10,12 +10,12 @@ export const popupSubmiteButtonEditeAvatar = popupEditeAvatar.querySelector('.po
 const profile = document.querySelector('.profile');
 const buttonEditeProfile = profile.querySelector('.profile__edite-button');
 const buttonAddCard = profile.querySelector('.profile__add-button');
-const avatarEditeButton = document.querySelector('.profile__edite-overlay')
-const popupAvatarEdite = document.querySelector('.popup_edite-avatar')
+const avatarEditeButton = document.querySelector('.profile__edite-overlay');
+const popupAvatarEdite = document.querySelector('.popup_edite-avatar');
 const formProfileEdite = document.forms['profile-edite-form'];
-const popups = document.querySelectorAll('.popup')
+const popups = document.querySelectorAll('.popup');
 const inputEditeAvatarURL = popupEditeAvatar.querySelector('.popup__form-input');
-export const submitButtonProfileSave = popupEditeProfile.querySelector('.popup__submite-button_profile-save')
+export const submitButtonProfileSave = popupEditeProfile.querySelector('.popup__submite-button_profile-save');
 
 // Открытие попапа профиля
 function openProfilePopup() {
@@ -55,10 +55,10 @@ function closeByEscape(evt) {
 popups.forEach((popup) => {
   popup.addEventListener('mousedown', (evt) => {
     if (evt.target.classList.contains('popup_opened')) {
-      closePopup(popup)
+      closePopup(popup);
     }
     if (evt.target.classList.contains('popup__close-button')) {
-      closePopup(popup)
+      closePopup(popup);
     }
   })
 })
@@ -66,20 +66,20 @@ popups.forEach((popup) => {
 // Сохранение профиля
 function handleSubmitEditProfileForm(event) {
   event.preventDefault();
-  submitButtonProfileSave.textContent = 'Сохранение'
-  patchProfile(popupProfileName.value, popupProfileSubtitle.value)
-  getProfile()
+  submitButtonProfileSave.textContent = 'Сохранение';
+  patchProfile(popupProfileName.value, popupProfileSubtitle.value);
+  getProfile();
 }
 
 formProfileEdite.addEventListener('submit', handleSubmitEditProfileForm);
 
 //открыть попап изменения авы
 avatarEditeButton.addEventListener('click', () => {
-  openPopup(popupAvatarEdite)
+  openPopup(popupAvatarEdite);
   document.forms['editeAvatarForm'].addEventListener('submit', (event) => {
     event.preventDefault();
     popupSubmiteButtonEditeAvatar.textContent = 'Сохранение';
-    changeAvatar(inputEditeAvatarURL.value)
-    getProfile()
+    changeAvatar(inputEditeAvatarURL.value);
+    event.target.reset();
   })
 })
