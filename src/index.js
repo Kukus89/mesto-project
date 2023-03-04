@@ -7,7 +7,7 @@ import { enableValidation, validationParams } from "./components/validate.js"
 import { getProfile, initialCards } from "./components/api.js";
 import { profileName, profileSubtitle } from "./components/modal.js";
 import { cardsContainer, createCard } from "./components/card.js";
-const profileAvatar = document.querySelector('.profile__avatar');
+export const profileAvatar = document.querySelector('.profile__avatar');
 
 
 enableValidation(validationParams);

@@ -1,5 +1,6 @@
 import { popupCardAdd } from "./card.js";
 import { patchProfile, changeAvatar, getProfile } from "./api.js";
+import { profileAvatar } from "../index.js";
 export const profileName = document.querySelector('.profile__name');
 export const profileSubtitle = document.querySelector('.profile__subtitle');
 export const popupProfileName = document.querySelector('.popup__profile_name');
@@ -95,8 +96,8 @@ avatarEditeButton.addEventListener('click', () => {
     event.preventDefault();
     popupSubmiteButtonEditeAvatar.textContent = 'Сохранение';
     changeAvatar(inputEditeAvatarURL.value)
-      .then(() => {
-        getProfile()
+      .then((res) => {
+        profileAvatar.src = res.avatar
       })
       .then(() => {
         closePopup(popupEditeAvatar)
