@@ -15,7 +15,7 @@ const popupAvatarEdite = document.querySelector('.popup_edite-avatar');
 const formProfileEdite = document.forms['profile-edite-form'];
 const popups = document.querySelectorAll('.popup');
 const inputEditeAvatarURL = popupEditeAvatar.querySelector('.popup__form-input');
-export const submitButtonProfileSave = popupEditeProfile.querySelector('.popup__submite-button_profile-save');
+const submiteButtonProfileSave = popupEditeProfile.querySelector('.popup__submite-button_profile-save');
 
 // Открытие попапа профиля
 function openProfilePopup() {
@@ -66,20 +66,48 @@ popups.forEach((popup) => {
 // Сохранение профиля
 function handleSubmitEditProfileForm(event) {
   event.preventDefault();
-  submitButtonProfileSave.textContent = 'Сохранение';
-  patchProfile(popupProfileName.value, popupProfileSubtitle.value);
-  getProfile();
+  submiteButtonProfileSave.textContent = 'Сохранение';
+  patchProfile(popupProfileName.value, popupProfileSubtitle.value)
+    .then((res) => {
+      profileName.textContent = res.name;
+      profileSubtitle.textContent = res.about;
+    })
+    .then(() => {
+      closePopup(submiteButtonProfileSave.closest('.popup'))
+    })
+    .catch((err) => {
+      console.log(`Ошибка: ${err}`)
+    })
+    .finally(() => {
+      submiteButtonProfileSave.textContent = 'Сохранить'
+    })
 }
 
 formProfileEdite.addEventListener('submit', handleSubmitEditProfileForm);
 
 //открыть попап изменения авы
+if (popupAvatarEdite.classList.contains('popup_opened')) {
+  console.log('123');
+}
 avatarEditeButton.addEventListener('click', () => {
   openPopup(popupAvatarEdite);
   document.forms['editeAvatarForm'].addEventListener('submit', (event) => {
     event.preventDefault();
     popupSubmiteButtonEditeAvatar.textContent = 'Сохранение';
-    changeAvatar(inputEditeAvatarURL.value);
+    changeAvatar(inputEditeAvatarURL.value)
+      .then(() => {
+        getProfile()
+      })
+      .then(() => {
+        closePopup(popupEditeAvatar)
+      })
+      .catch((err) => {
+        console.log(`Ошибка: ${err}`)
+      })
+      .finally(() => {
+        popupSubmiteButtonEditeAvatar.textContent = 'Сохранить';
+      })
     event.target.reset();
-  })
+  }, { once: true })
 })
+

@@ -1,6 +1,5 @@
-import { openPopup, profileName } from "./modal.js";
+import { openPopup, profileName, closePopup } from "./modal.js";
 import { deleteCard, addLike, deleteLike, postNewCard } from "./api.js";
-export const confirmDeleteButton = document.querySelector('.popup__submite-button_confirm-delete')
 export const cardsContainer = document.querySelector('.elements__list');
 export const popupCardAdd = document.querySelector('.popup_card-add');
 export const submiteButtonCardAdd = document.querySelector('.popup__submite-button_card-add');
@@ -11,7 +10,7 @@ const newCardTemplate = document.querySelector('.templateElements').content;
 const popupPreview = document.querySelector('.popup_preview');
 const popupPreviewImage = document.querySelector('.popup__preview-image');
 const imageSubtitle = document.querySelector('.popup__preview-image-subtitle');
-const popupConfirmDelete = document.querySelector('.popup_confirm-delete');
+let userID = '';
 
 // форма готовой карточки
 export function createCard(newCardObject) {
@@ -28,37 +27,43 @@ export function createCard(newCardObject) {
   elementLikeQquantity.textContent = newCardObject.likes.length;
   element.querySelector('.element__title').textContent = newCardObject.name;
 
-  elementDelete.addEventListener('click', () => {
-    openPopup(popupConfirmDelete)
-    if (popupConfirmDelete.classList.contains('popup_opened')) {
-      confirmDeleteButton.addEventListener('click', () => {
-        deleteCard(newCardObject._id, element);
-        confirmDeleteButton.textContent = 'Удаление';
+  function clickElementDelete(evt) {
+    evt.preventDefault()
+    deleteCard(newCardObject._id, element)
+      .then(() => {
         elementDelete.closest('.element').remove();
-      }, {once:true})
-    }
-  })
+      })
+      .catch((err) => {
+        console.log(`Ошибка: ${err}`)
+      })
+  }
+
+  elementDelete.addEventListener('click', clickElementDelete)
 
   newCardObject.likes.forEach(element => {
-    if (element._id == '962d657b2afc25af033ca0a3') {
+    if (element._id == userID) {
       elementLike.classList.toggle('element__like_active');
     }
   })
 
-  // console.log(newCardObject.likes);
   elementLike.addEventListener('click', () => {
     if (!elementLike.classList.contains('element__like_active')) {
       addLike(newCardObject._id)
         .then((res) => {
           elementLike.classList.toggle('element__like_active');
           elementLikeQquantity.textContent = res.likes.length;
-          // console.log(res);
+        })
+        .catch((err) => {
+          console.log(`Ошибка: ${err}`)
         })
     } else {
       deleteLike(newCardObject._id)
         .then((res) => {
           elementLike.classList.toggle('element__like_active');
           elementLikeQquantity.textContent = res.likes.length;
+        })
+        .catch((err) => {
+          console.log(`Ошибка: ${err}`)
         })
     }
   })
@@ -76,7 +81,20 @@ export function createCard(newCardObject) {
 export function addNewCard(event) {
   event.preventDefault();
   submiteButtonCardAdd.textContent = 'Сохранение';
-  postNewCard(popupAreaName.value, imageSrc.value);
+  postNewCard(popupAreaName.value, imageSrc.value)
+    .then((obj) => {
+      const newCardObject = obj
+      cardsContainer.prepend((createCard(newCardObject)))
+    })
+    .then((obj) => {
+      closePopup(submiteButtonCardAdd.closest('.popup'))
+    })
+    .catch((err) => {
+      console.log(`Ошибка: ${err}`)
+    })
+    .finally(() => {
+      submiteButtonCardAdd.textContent = 'Сохранить'
+    })
   event.target.reset();
 }
 

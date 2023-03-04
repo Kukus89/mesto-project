@@ -1,8 +1,4 @@
-import { profileName, profileSubtitle, closePopup, popupEditeAvatar, popupSubmiteButtonEditeAvatar } from "./modal.js";
-import { createCard, confirmDeleteButton, submiteButtonCardAdd, cardsContainer } from "./card.js";
-export const profileAvatar = document.querySelector('.profile__avatar');
-const submiteButtonProfileSave = document.querySelector('.popup__submite-button_profile-save');
-
+import { checkResponse, request } from "./utils.js";
 
 const config = {
   baseUrl: 'https://nomoreparties.co/v1/plus-cohort-21',
@@ -12,55 +8,17 @@ const config = {
   }
 }
 
-//загрузка нформации профиля
 export const getProfile = () => {
-  return fetch(`${config.baseUrl}/users/me`, {
-    headers: config.headers
-  })
-    .then((res) => {
-      if (res.ok) {
-        return res.json()
-      }
-      return Promise.reject(res.status)
-    })
-    .then((result) => {
-      profileName.textContent = result.name;
-      profileSubtitle.textContent = result.about;
-      profileAvatar.src = result.avatar;
-    })
-    .catch((err) => {
-      console.log(`Ошибка: ${err}`)
-    })
+  return request(`${config.baseUrl}/users/me`, config)
 }
-
-getProfile()
 
 //Загрузка карточек с сервера
 export const initialCards = () => {
-  return fetch(`${config.baseUrl}/cards`, {
-    headers: config.headers
-  })
-    .then((res) => {
-      if (res.ok) {
-        return res.json()
-      }
-      return Promise.reject(res.status)
-    })
-    .then((result) => {
-      result.forEach(element => {
-        // console.log(element);
-        cardsContainer.prepend(createCard(element))
-      });
-    })
-    .catch((err) => {
-      console.log(`Ошибка: ${err}`)
-    })
+  return request(`${config.baseUrl}/cards`, config)
 }
 
-initialCards()
-
 export const patchProfile = (editeProfileName, editeProfileAbout) => {
-  fetch(`${config.baseUrl}/users/me`, {
+  return fetch(`${config.baseUrl}/users/me`, {
     method: 'PATCH',
     headers: config.headers,
     body: JSON.stringify({
@@ -68,24 +26,12 @@ export const patchProfile = (editeProfileName, editeProfileAbout) => {
       about: editeProfileAbout
     })
   })
-    .then((res) => {
-      if (res.ok) {
-        return res.json()
-      }
-      return Promise.reject(res.status)
-    })
-    .then(() => {
-      closePopup(submiteButtonProfileSave.closest('.popup'))
-      submiteButtonProfileSave.textContent = 'Сохранить'
-    })
-    .catch((err) => {
-      console.log(`Ошибка: ${err}`)
-    })
+    .then(checkResponse)
 }
 
 //Отправка новой карточки на сервер
 export const postNewCard = (newCardName, newCardUrl) => {
-  fetch(`${config.baseUrl}/cards`, {
+  return fetch(`${config.baseUrl}/cards`, {
     method: 'POST',
     headers: config.headers,
     body: JSON.stringify({
@@ -93,45 +39,16 @@ export const postNewCard = (newCardName, newCardUrl) => {
       link: newCardUrl
     })
   })
-    .then((res) => {
-      if (res.ok) {
-        return res.json()
-      }
-      return Promise.reject(res.status)
-    })
-    .then((obj) => {
-      const newCardObject = obj
-      cardsContainer.prepend((createCard(newCardObject)))
-    })
-    .then(() => {
-      submiteButtonCardAdd.textContent = 'Сохранить'
-      closePopup(submiteButtonCardAdd.closest('.popup'))
-    })
-    .catch((err) => {
-      console.log(`Ошибка: ${err}`)
-    })
+    .then(checkResponse)
 }
 
 //Удаление Карточки
 export const deleteCard = (cardId) => {
-  fetch(`${config.baseUrl}/cards/${cardId}`, {
+  return fetch(`${config.baseUrl}/cards/${cardId}`, {
     method: 'DELETE',
     headers: config.headers,
   })
-    .then((res) => {
-      if (res.ok) {
-        // console.log(res.ok);
-        return res.json()
-      }
-      return Promise.reject(res.status)
-    })
-    .then(() => {
-      closePopup(confirmDeleteButton.closest('.popup'))
-      confirmDeleteButton.textContent = 'Да';
-    })
-    .catch((err) => {
-      console.log(`Ошибка: ${err}`)
-    })
+    .then(checkResponse)
 }
 
 //добавить лайк 
@@ -140,15 +57,7 @@ export const addLike = (cardId) => {
     method: 'PUT',
     headers: config.headers,
   })
-    .then((res) => {
-      if (res.ok) {
-        return res.json()
-      }
-      return Promise.reject(res.status)
-    })
-    .catch((err) => {
-      console.log(`Ошибка: ${err}`)
-    })
+    .then(checkResponse)
 }
 
 //удалить лайк 
@@ -157,15 +66,7 @@ export const deleteLike = (cardId) => {
     method: 'DELETE',
     headers: config.headers,
   })
-    .then((res) => {
-      if (res.ok) {
-        return res.json()
-      }
-      return Promise.reject(res.status)
-    })
-    .catch((err) => {
-      console.log(`Ошибка: ${err}`)
-    })
+    .then(checkResponse)
 }
 
 //Обновление авы
@@ -177,20 +78,7 @@ export const changeAvatar = (AvatarURL) => {
       avatar: AvatarURL
     })
   })
-    .then((res) => {
-      if (res.ok) {
-        return res.json()
-      }
-      return Promise.reject(res.status)
-    })
-    .then(() => {
-      getProfile()
-    })
-    .then(() => {
-      closePopup(popupEditeAvatar)
-      popupSubmiteButtonEditeAvatar.textContent = 'Сохранить'
-    })
-    .catch((err) => {
-      console.log(`Ошибка: ${err}`)
-    })
+    .then(checkResponse)
 }
+
+
