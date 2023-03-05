@@ -9,7 +9,6 @@ import { profileName, profileSubtitle } from "./components/modal.js";
 import { cardsContainer, createCard } from "./components/card.js";
 export const profileAvatar = document.querySelector('.profile__avatar');
 
-
 enableValidation(validationParams);
 
 Promise.all([getProfile(), initialCards()])

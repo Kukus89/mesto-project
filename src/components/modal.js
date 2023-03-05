@@ -87,28 +87,29 @@ function handleSubmitEditProfileForm(event) {
 formProfileEdite.addEventListener('submit', handleSubmitEditProfileForm);
 
 //открыть попап изменения авы
-if (popupAvatarEdite.classList.contains('popup_opened')) {
-  console.log('123');
-}
 avatarEditeButton.addEventListener('click', () => {
   openPopup(popupAvatarEdite);
-  document.forms['editeAvatarForm'].addEventListener('submit', (event) => {
-    event.preventDefault();
-    popupSubmiteButtonEditeAvatar.textContent = 'Сохранение';
-    changeAvatar(inputEditeAvatarURL.value)
-      .then((res) => {
-        profileAvatar.src = res.avatar
-      })
-      .then(() => {
-        closePopup(popupEditeAvatar)
-      })
-      .catch((err) => {
-        console.log(`Ошибка: ${err}`)
-      })
-      .finally(() => {
-        popupSubmiteButtonEditeAvatar.textContent = 'Сохранить';
-      })
-    event.target.reset();
-  }, { once: true })
 })
+
+function clickSubmitButtonAvatarEdite(evt) {
+  evt.preventDefault();
+  popupSubmiteButtonEditeAvatar.textContent = 'Сохранение';
+  changeAvatar(inputEditeAvatarURL.value)
+    .then((res) => {
+      profileAvatar.src = res.avatar
+    })
+    .then(() => {
+      closePopup(popupEditeAvatar)
+    })
+    .catch((err) => {
+      console.log(`Ошибка: ${err}`)
+    })
+    .finally(() => {
+      popupSubmiteButtonEditeAvatar.textContent = 'Сохранить';
+    })
+  evt.target.reset();
+}
+
+document.forms['editeAvatarForm'].addEventListener('submit', clickSubmitButtonAvatarEdite)
+
 
