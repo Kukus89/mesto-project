@@ -1,5 +1,4 @@
 import { openPopup, profileName, closePopup } from "./modal.js";
-import { deleteCard, addLike, deleteLike, postNewCard } from "./api.js";
 export const cardsContainer = document.querySelector('.elements__list');
 export const popupCardAdd = document.querySelector('.popup_card-add');
 export const submiteButtonCardAdd = document.querySelector('.popup__submite-button_card-add');

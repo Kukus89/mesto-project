@@ -1,5 +1,4 @@
 import { popupCardAdd } from "./card.js";
-import { patchProfile, changeAvatar, } from "./api.js";
 import { profileAvatar } from "../index.js";
 export const profileName = document.querySelector('.profile__name');
 export const profileSubtitle = document.querySelector('.profile__subtitle');
