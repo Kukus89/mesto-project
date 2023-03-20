@@ -1,6 +1,6 @@
 import { popupCardAdd } from "./card.js";
-import { patchProfile, changeAvatar, } from "./api.js";
 import { profileAvatar } from "../index.js";
+import { api } from "./api.js";
 export const profileName = document.querySelector('.profile__name');
 export const profileSubtitle = document.querySelector('.profile__subtitle');
 export const popupProfileName = document.querySelector('.popup__profile_name');
@@ -68,7 +68,7 @@ popups.forEach((popup) => {
 function handleSubmitEditProfileForm(event) {
   event.preventDefault();
   submiteButtonProfileSave.textContent = 'Сохранение';
-  patchProfile(popupProfileName.value, popupProfileSubtitle.value)
+  api.patchProfile(popupProfileName.value, popupProfileSubtitle.value)
     .then((res) => {
       profileName.textContent = res.name;
       profileSubtitle.textContent = res.about;

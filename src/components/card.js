@@ -1,5 +1,5 @@
 import { openPopup, profileName, closePopup } from "./modal.js";
-import { deleteCard, addLike, deleteLike, postNewCard } from "./api.js";
+import { api } from "./api.js";
 export const cardsContainer = document.querySelector('.elements__list');
 export const popupCardAdd = document.querySelector('.popup_card-add');
 export const submiteButtonCardAdd = document.querySelector('.popup__submite-button_card-add');
@@ -29,7 +29,7 @@ export function createCard(newCardObject) {
 
   function clickElementDelete(evt) {
     evt.preventDefault()
-    deleteCard(newCardObject._id, element)
+    api.deleteCard(newCardObject._id, element)
       .then(() => {
         elementDelete.closest('.element').remove();
       })
@@ -48,7 +48,7 @@ export function createCard(newCardObject) {
 
   elementLike.addEventListener('click', () => {
     if (!elementLike.classList.contains('element__like_active')) {
-      addLike(newCardObject._id)
+      api.addLike(newCardObject._id)
         .then((res) => {
           elementLike.classList.toggle('element__like_active');
           elementLikeQquantity.textContent = res.likes.length;
@@ -57,7 +57,7 @@ export function createCard(newCardObject) {
           console.log(`Ошибка: ${err}`)
         })
     } else {
-      deleteLike(newCardObject._id)
+      api.deleteLike(newCardObject._id)
         .then((res) => {
           elementLike.classList.toggle('element__like_active');
           elementLikeQquantity.textContent = res.likes.length;
@@ -78,13 +78,92 @@ export function createCard(newCardObject) {
 }
 
 // добавление новой карточки
+// export function addNewCard(event) {
+//   event.preventDefault();
+//   submiteButtonCardAdd.textContent = 'Сохранение';
+//   api.postNewCard(popupAreaName.value, imageSrc.value)
+//     .then((obj) => {
+//       const newCardObject = obj
+//       // cardsContainer.prepend((createCard(newCardObject)))
+//       cardsContainer.prepend((new card(newCardObject).ge))
+//     })
+//     .then((obj) => {
+//       closePopup(submiteButtonCardAdd.closest('.popup'))
+//     })
+//     .catch((err) => {
+//       console.log(`Ошибка: ${err}`)
+//     })
+//     .finally(() => {
+//       submiteButtonCardAdd.textContent = 'Сохранить'
+//     })
+//   event.target.reset();
+// }
+
+// formCardAdd.addEventListener('submit', addNewCard);
+
+//
+//
+//
+//
+//
+//
+
+class Card {
+  constructor(elementObj, templateSelector) {
+    this.templateSelector = templateSelector;
+    this.elementObj = elementObj;
+  }
+
+  _getElement() {
+    const cardElement = document.querySelector(`.${this.templateSelector}`).content.cloneNode(true);
+    return cardElement;
+  }
+
+  generate() {
+    this._element = this._getElement();
+    this._setEventListeners();
+    this._element.querySelector('.element__image').src = this.elementObj.link;
+    this._element.querySelector('.element__image').alt = `Здесь должна быть фотография ${this.elementObj.name}`;
+    this._element.querySelector('.element__title').textContent = this.elementObj.name;
+    this._element.querySelector('.element__like-quantity').textContent = this.elementObj.likes.length;
+    this.elementDelete = this._element.querySelector('.element__delete-button');
+    if (this.elementObj.owner.name !== profileName.textContent) {
+      this.elementDelete.remove();
+    }
+    return this._element
+  }
+
+  _setEventListeners() {
+
+    
+  };
+
+
+  clickElementDelete(evt) {
+    evt.preventDefault()
+    api.deleteCard(newCardObject._id, element)
+      .then(() => {
+        elementDelete.closest('.element').remove();
+      })
+      .catch((err) => {
+        console.log(`Ошибка: ${err}`)
+      })
+  }
+
+
+}
+
+
+
+
 export function addNewCard(event) {
   event.preventDefault();
   submiteButtonCardAdd.textContent = 'Сохранение';
-  postNewCard(popupAreaName.value, imageSrc.value)
+  api.postNewCard(popupAreaName.value, imageSrc.value)
     .then((obj) => {
-      const newCardObject = obj
-      cardsContainer.prepend((createCard(newCardObject)))
+      const newCardObject = obj;
+      const card = new Card(newCardObject, 'templateElements')
+      cardsContainer.prepend((card.generate()))
     })
     .then((obj) => {
       closePopup(submiteButtonCardAdd.closest('.popup'))
