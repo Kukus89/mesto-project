@@ -121,40 +121,34 @@ class Card {
 
   generate() {
     this._element = this._getElement();
+    this._elementDelete = this._element.querySelector('.element__delete-button');
     this._setEventListeners();
     this._element.querySelector('.element__image').src = this.elementObj.link;
     this._element.querySelector('.element__image').alt = `Здесь должна быть фотография ${this.elementObj.name}`;
     this._element.querySelector('.element__title').textContent = this.elementObj.name;
     this._element.querySelector('.element__like-quantity').textContent = this.elementObj.likes.length;
-    this.elementDelete = this._element.querySelector('.element__delete-button');
     if (this.elementObj.owner.name !== profileName.textContent) {
       this.elementDelete.remove();
     }
     return this._element
   }
 
-  _setEventListeners() {
-
-    
-  };
-
-
-  clickElementDelete(evt) {
-    evt.preventDefault()
-    api.deleteCard(newCardObject._id, element)
+  _clickElementDelete() {
+    api.deleteCard(this.elementObj._id, this._element)
       .then(() => {
-        elementDelete.closest('.element').remove();
+        this._elementDelete.closest('.element').remove();
       })
       .catch((err) => {
         console.log(`Ошибка: ${err}`)
       })
   }
 
-
+  _setEventListeners() {
+    this._elementDelete.addEventListener('click', () => {
+      this._clickElementDelete()
+    })
+  }
 }
-
-
-
 
 export function addNewCard(event) {
   event.preventDefault();
