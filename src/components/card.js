@@ -1,4 +1,5 @@
 import { openPopup, profileName, closePopup } from "./modal.js";
+import { api } from "./api.js";
 export const cardsContainer = document.querySelector('.elements__list');
 export const popupCardAdd = document.querySelector('.popup_card-add');
 export const submiteButtonCardAdd = document.querySelector('.popup__submite-button_card-add');
@@ -10,6 +11,8 @@ const popupPreview = document.querySelector('.popup_preview');
 const popupPreviewImage = document.querySelector('.popup__preview-image');
 const imageSubtitle = document.querySelector('.popup__preview-image-subtitle');
 let userID = '';
+
+// console.log(Api);
 
 // форма готовой карточки
 export function createCard(newCardObject) {
@@ -28,7 +31,7 @@ export function createCard(newCardObject) {
 
   function clickElementDelete(evt) {
     evt.preventDefault()
-    deleteCard(newCardObject._id, element)
+    api.deleteCard(newCardObject._id, element)
       .then(() => {
         elementDelete.closest('.element').remove();
       })
@@ -47,7 +50,7 @@ export function createCard(newCardObject) {
 
   elementLike.addEventListener('click', () => {
     if (!elementLike.classList.contains('element__like_active')) {
-      addLike(newCardObject._id)
+      api.addLike(newCardObject._id)
         .then((res) => {
           elementLike.classList.toggle('element__like_active');
           elementLikeQquantity.textContent = res.likes.length;
@@ -56,7 +59,7 @@ export function createCard(newCardObject) {
           console.log(`Ошибка: ${err}`)
         })
     } else {
-      deleteLike(newCardObject._id)
+      api.deleteLike(newCardObject._id)
         .then((res) => {
           elementLike.classList.toggle('element__like_active');
           elementLikeQquantity.textContent = res.likes.length;
@@ -80,7 +83,7 @@ export function createCard(newCardObject) {
 export function addNewCard(event) {
   event.preventDefault();
   submiteButtonCardAdd.textContent = 'Сохранение';
-  postNewCard(popupAreaName.value, imageSrc.value)
+  api.postNewCard(popupAreaName.value, imageSrc.value)
     .then((obj) => {
       const newCardObject = obj
       cardsContainer.prepend((createCard(newCardObject)))
