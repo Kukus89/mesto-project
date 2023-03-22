@@ -30,10 +30,3 @@
     margin: 45px 0 25px;
   }
 }
-
-@media screen and (max-width: 320px) {
-  .popup__submite-button {
-    max-width: 238px;
-    margin: 10px 0 0px;
-  }
-}
