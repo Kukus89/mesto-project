@@ -19,7 +19,7 @@ export class Api {
   }
 
   getProfile = () => {
-    return request(`${this._config.baseUrl}/users/me`, this._config) 
+    return request(`${this._config.baseUrl}/users/me`, this._config)
   }
 
   //Загрузка карточек с сервера
